@@ -1,0 +1,17 @@
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
+
+@include pc {
+  .slider {
+  }
+  .sliderItem {
+  }
+  .link {
+    display: grid;
+    row-gap: 20px;
+    width: fit-content;
+  }
+}
+
+@include sp {
+}

@@ -1,0 +1,7 @@
+@function hl($margin: 0) {
+  $halfLeading: calc((1em - 1lh) / 2);
+  @if $margin != 0 {
+    @return calc($margin + $halfLeading);
+  }
+  @return $halfLeading;
+}

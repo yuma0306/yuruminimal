@@ -1,0 +1,16 @@
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
+
+@include pc {
+  .inner {
+    max-width: #{$maxInner}px;
+    margin-inline: auto;
+    padding-inline: #{$innerSpace}px;
+  }
+}
+
+@include sp {
+  .inner {
+    margin: 0 vw($innerSpace);
+  }
+}

@@ -1,7 +1,11 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+	reactStrictMode: true,
+	trailingSlash: true,
+	images: {
+		domains: ['images.microcms-assets.io'],
+	},
 };
 
 export default nextConfig;

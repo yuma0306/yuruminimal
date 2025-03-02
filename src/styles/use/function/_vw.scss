@@ -1,0 +1,13 @@
+@use '../../config/import' as *;
+
+@function vw($num, $width: $compWidth) {
+  @return calc(1vw * $num / $width * 100);
+}
+
+@function pcVw($num, $width: $pcCompWidth) {
+	@return calc(1vw * $num / $width * 100);
+}
+
+@function vwMin($num) {
+	@return min(pcVw($num), $num * 1px);
+}
