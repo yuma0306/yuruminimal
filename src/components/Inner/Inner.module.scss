@@ -3,7 +3,7 @@
 
 @include pc {
   .inner {
-    max-width: #{$maxInner}px;
+    max-width: #{$innerWidth}px;
     margin-inline: auto;
     padding-inline: #{$innerSpace}px;
   }

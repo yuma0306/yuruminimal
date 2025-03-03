@@ -1,20 +1,23 @@
-$primary: #DF5656;
-$primary02: #FFF3F0;
-$primary03: #960505;
-
-$yellow: #FFCD2A;
-$yellow02: #FEF1C9;
-
-$green: #04A149;
-$green02: #EBFFF4;
-
-$red: #F60001;
-$red02: #FFDEDE;
-
-$gray: #CCC;
-$gray02: #AAA;
-$gray03: #f7f7f7;
-
-$black: #333;
-
+$base: #0d1532;
 $white: #FFF;
+
+$primary: #490a5c;
+$primary10: color-mix(in srgb, $primary 10%, $white);
+$primary20: color-mix(in srgb, $primary 20%, $white);
+$primary50: color-mix(in srgb, $primary 50%, $white);
+
+$secondary: #26b9cd;
+$secondary10: color-mix(in srgb, $secondary 10%, $white);
+$secondary20: color-mix(in srgb, $secondary 20%, $white);
+$secondary50: color-mix(in srgb, $secondary 50%, $white);
+$Tertiary: #162253;
+
+$yellow: #ffcd2a;
+$yellow50: color-mix(in srgb, $yellow 50%, $white);
+$yellow20: color-mix(in srgb, $yellow 20%, $white);
+$yellow10: color-mix(in srgb, $yellow 10%, $white);
+
+$gradation: linear-gradient(90deg, $primary, $secondary);
+$gradation10: linear-gradient(90deg, $primary10, $secondary10);
+$gradation20: linear-gradient(90deg, $primary20, $secondary20);
+$gradation50: linear-gradient(90deg, $primary50, $secondary50);

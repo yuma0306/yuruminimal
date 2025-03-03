@@ -1,0 +1,162 @@
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
+
+@include pc {
+  .intro {
+    padding-block: 80px calc(80px + 80px);
+    background: $white;
+  }
+  .block {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .heading {
+    text-align: center;
+    font-size: 28px;
+    font-weight: $fwBold;
+    color: $primary;
+  }
+  .text {
+    flex: 1;
+    position: relative;
+    background-color: $primary10;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid $primary;
+    &:before, &:after {
+      position: absolute;
+      left: 0;
+      display: block;
+      clip-path: polygon(0 50%, 100% 0, 100% 100%);
+      translate: -100% 0;
+      content: "";
+    }
+    &::before {
+      top: 22px;
+      width: 20px;
+      height: 20px;
+      background-color: $primary;
+    }
+    &::after {
+      top: 24px;
+      width: 16px;
+      height: 16px;
+      background-color: $primary10;
+    }
+  }
+  .imageWrapper {
+    position: relative;
+    width: 180px;
+    transform-origin: center center;
+    animation: uranaishi 8s ease-in-out infinite;
+    &::before {
+      display: block;
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: $yellow50;
+      border-radius: 50%;
+      bottom: 50px;
+      left: 50%;
+      translate: -50% 0%;
+      opacity: .5;
+      content: '';
+      transform-origin: center center;
+      animation: suisyou 8s ease-in-out infinite;
+    }
+  }
+}
+
+@include sp {
+  .intro {
+    padding-block: vw(60);
+    background: $white;
+  }
+  .block {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: vw(20);
+    gap: vw(20);
+  }
+  .heading {
+    text-align: center;
+    font-size: vw(24);
+    font-weight: $fwBold;
+    color: $primary;
+  }
+  .text {
+    flex: 1;
+    position: relative;
+    background-color: $primary10;
+    padding: vw(20);
+    border-radius: vw(8);
+    border: vw(2) solid $primary;
+    &:before, &:after {
+      position: absolute;
+      left: 50%;
+      display: block;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      translate: -50% 100%;
+      content: "";
+    }
+    &::before {
+      bottom: vw(0);
+      width: vw(20);
+      height: vw(20);
+      background-color: $primary;
+    }
+    &::after {
+      bottom: vw(1);
+      width: vw(16);
+      height: vw(16);
+      background-color: $primary10;
+    }
+  }
+  .imageWrapper {
+    position: relative;
+    width: vw(180);
+    transform-origin: center center;
+    animation: uranaishi 8s ease-in-out infinite;
+    margin-inline: auto;
+    &::before {
+      display: block;
+      position: absolute;
+      width: vw(2);
+      height: vw(2);
+      background: $yellow50;
+      border-radius: 50%;
+      bottom: vw(50);
+      left: 50%;
+      translate: -50% 0%;
+      opacity: .5;
+      content: '';
+      transform-origin: center center;
+      animation: suisyou 8s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes uranaishi {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes suisyou {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(50);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -3,13 +3,9 @@ import styles from '@/components/Fv/Fv.module.scss';
 import type { BlogType } from '@/types/microcms.type';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 import 'swiper/scss';
 import { media } from '@/constants/media';
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
-import Image from 'next/image';
-import Link from 'next/link';
+import { CardLink } from '../CardLink/CardLink';
 
 type Props = {
 	posts: BlogType[];
@@ -17,51 +13,44 @@ type Props = {
 
 export const Fv = ({ posts }: Props) => {
 	return (
-		<Swiper
-			className={styles.slider}
-			tag="ul"
-			slidesPerView={1}
-			spaceBetween={20}
-			loop
-			modules={[Navigation, Pagination]}
-			navigation
-			pagination={{ clickable: true }}
-			breakpoints={{
-				[media.tab]: {
-					slidesPerView: 2,
-				},
-				[media.pc]: {
-					slidesPerView: 3,
-				},
-			}}
-		>
-			{Array.from({ length: 5 })
-				.flatMap(() => posts)
-				.map(
-					(post) =>
-						post.eyecatch && (
-							<SwiperSlide
-								className={styles.sliderItem}
-								key={String(post.id) + Math.random()}
-								tag={'li'}
-							>
-								<Link
-									className={styles.link}
-									href={`/blog/${post.category.id}/${post.id}`}
-								>
-									<Image
-										className={styles.image}
-										alt={''}
-										src={post.eyecatch.url}
-										height={post.eyecatch.height}
-										width={post.eyecatch.width}
-										priority
-									/>
-									<p className={styles.title}>{post.title}</p>
-								</Link>
-							</SwiperSlide>
-						),
+		<div className={styles.fv}>
+			<Swiper
+				className={styles.slider}
+				slidesPerView={1.5}
+				spaceBetween={20}
+				loop
+				centeredSlides
+				modules={[Navigation, Pagination]}
+				navigation
+				pagination={{ clickable: true }}
+				breakpoints={{
+					[media.tab]: {
+						slidesPerView: 3.5,
+						spaceBetween: 20,
+					},
+					[media.pc]: {
+						slidesPerView: 3.5,
+						spaceBetween: 30,
+					},
+				}}
+			>
+				{posts.map((post, index) =>
+					post.eyecatch?.width && post.eyecatch?.height && post.publishedAt ? (
+						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+						<SwiperSlide className={styles.sliderItem} key={index}>
+							<CardLink
+								link={`/blog/${post.category.id}/${post.id}`}
+								image={post.eyecatch.url}
+								width={post.eyecatch.width}
+								height={post.eyecatch.height}
+								time={post.publishedAt.slice(0, 10)}
+								title={post.title}
+								priority
+							/>
+						</SwiperSlide>
+					) : undefined,
 				)}
-		</Swiper>
+			</Swiper>
+		</div>
 	);
 };

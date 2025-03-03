@@ -1,3 +1,7 @@
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
+
 .wrapper {
   overflow-x: hidden;
+  background: $gradation20;
 }

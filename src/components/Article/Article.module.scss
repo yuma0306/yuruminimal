@@ -1,0 +1,43 @@
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
+
+@include pc {
+  .article {
+    padding-inline: 20px;
+  }
+  .inner {
+
+  }
+  .block {
+    margin: -80px auto 0;
+    background: $white;
+    max-width: 1200px;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px 0 $primary20;
+  }
+  .list {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .item {
+    display: grid;
+    row-gap: 24px;
+  }
+  .heading {
+    font-size: 24px;
+    font-weight: $fwBold;
+    color: $primary;
+    text-align: center;
+  }
+  .articleList {
+    display: grid;
+    row-gap: 20px;
+  }
+}
+
+@include sp {
+  .article {
+  }
+}

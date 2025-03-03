@@ -4,7 +4,7 @@
 body {
 	word-break: break-all;
 	overflow-wrap: break-word;
-  color: $black;
+  color: $base;
 }
 
 img  {
@@ -20,19 +20,19 @@ h1,h2,h3,h4,h5,h6 {
   letter-spacing: $lsM;
 }
 
-p,li,dt,dd,a {
+p,li,dt,dd,a,span {
 	line-height: $lhM;
 	letter-spacing: $lsM;
 }
 
 @include pc {
-	p,li,dt,dd,a {
+	p,li,dt,dd,a,span {
 		font-size: #{$fzM}px;
 	}
 }
 
 @include sp {
-	p,li,dt,dd,a {
+	p,li,dt,dd,a,span {
 		font-size: vw($fzM);
 	}
 }
