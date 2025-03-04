@@ -1,0 +1,24 @@
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
+
+@include pc {
+  .footer {
+    padding: 40px 0;
+  }
+  .copy {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+  }
+}
+
+@include sp {
+  .footer {
+    padding: vw(20) 0;
+  }
+  .copy {
+    display: block;
+    text-align: center;
+    font-size: vw(12);
+  }
+}

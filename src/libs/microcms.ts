@@ -1,3 +1,4 @@
+import type { CategoryType } from '@/libs/microcms.type';
 import { createClient } from 'microcms-js-sdk';
 import type { MicroCMSQueries } from 'microcms-js-sdk';
 
@@ -28,3 +29,22 @@ export const getListData = async <T>(
 	});
 	return data;
 };
+
+const getCategories = async () => {
+	const { contents: categoreisData } = await getListData<CategoryType>(
+		endpoints.categories,
+	);
+	const categoriesMap = categoreisData.reduce<Record<string, string>>(
+		(acc, category) => {
+			acc[category.id] = category.name;
+			return acc;
+		},
+		{},
+	);
+	return {
+		categoreisData,
+		categoriesMap,
+	};
+};
+
+export const { categoreisData, categoriesMap } = await getCategories();

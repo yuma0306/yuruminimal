@@ -1,5 +1,5 @@
-import { categoreisData } from '@/constants/category';
 import { meta } from '@/constants/meta';
+import { categoreisData } from '@/libs/microcms';
 import Link from 'next/link';
 import type React from 'react';
 import styles from './Header.module.scss';

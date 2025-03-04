@@ -1,6 +1,6 @@
 'use client';
 import styles from '@/components/Fv/Fv.module.scss';
-import type { BlogType } from '@/types/microcms.type';
+import type { BlogType } from '@/libs/microcms.type';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/scss';
@@ -45,6 +45,8 @@ export const Fv = ({ posts }: Props) => {
 								height={post.eyecatch.height}
 								time={post.publishedAt.slice(0, 10)}
 								title={post.title}
+								loading="eager"
+								decoding="auto"
 								priority
 							/>
 						</SwiperSlide>

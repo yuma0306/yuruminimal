@@ -4,8 +4,8 @@ import { Fv } from '@/components/Fv/Fv';
 import { Header } from '@/components/Header/Header';
 import { Intro } from '@/components/Intro/Intro';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
-import { endpoints, getListData } from '@/features/microcms';
-import type { BlogType } from '@/types/microcms.type';
+import { endpoints, getListData } from '@/libs/microcms';
+import type { BlogType } from '@/libs/microcms.type';
 
 const minFvPostLength = 6;
 
