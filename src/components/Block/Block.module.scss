@@ -14,4 +14,11 @@
 }
 
 @include sp {
+  .block {
+    padding: vw(20);
+    background-color: $white;
+    padding: vw(20);
+    border-radius: vw(8);
+    box-shadow: 0 0 vw(10) 0 $primary20;
+  }
 }

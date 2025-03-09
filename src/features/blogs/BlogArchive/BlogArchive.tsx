@@ -47,7 +47,6 @@ export const BlogArchive = ({ posts, category }: Props) => {
 							</ul>
 						)}
 					</Block>
-					<Breadcrumb items={['トップ', category]} />
 				</HolizonalSpacer>
 			</Main>
 			<Footer />

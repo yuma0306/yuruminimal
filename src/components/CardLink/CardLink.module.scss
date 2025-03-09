@@ -23,7 +23,7 @@
   }
   .info {
     display: grid;
-    row-gap: 10px;
+    row-gap: 8px;
     align-self: start;
     flex: 1;
   }
@@ -44,5 +44,42 @@
 }
 
 @include sp {
-
+  .link {
+    display: flex;
+    gap: vw(10);
+    &:hover {
+      opacity: $opacity;
+      .image {
+        scale: $scale;
+      }
+    }
+  }
+  .imageWrapper {
+    overflow: hidden;
+    flex: 1;
+  }
+  .image {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    transition: scale $transition, opacity $transition;
+  }
+  .info {
+    display: grid;
+    row-gap: vw(8);
+    align-self: start;
+    flex: 1;
+  }
+  .time {
+    display: block;
+    font-size: vw(10);
+    margin-top: hl();
+    line-height: 1;
+  }
+  .title {
+    font-weight: $fwMedium;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
 }

@@ -9,6 +9,15 @@
   }
 }
 
-@include sp {
+@include tab {
+  .list {
+    grid-template-columns: auto;
+  }
+}
 
+@include sp {
+  .list {
+    display: grid;
+    gap: vw(20);
+  }
 }

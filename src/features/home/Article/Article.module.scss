@@ -12,7 +12,18 @@
   }
 }
 
+@include tab {
+  .list {
+    grid-template-columns: auto;
+  }
+}
+
 @include sp {
-  .article {
+  .blockWrapper {
+    margin: vw(-60) auto 0;
+  }
+  .list {
+    display: grid;
+    gap: vw(40);
   }
 }

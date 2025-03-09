@@ -21,6 +21,17 @@
 }
 
 @include sp {
-  .article {
+  .item {
+    display: grid;
+    row-gap: vw(24);
+  }
+  .heading {
+    font-size: vw(20);
+    font-weight: $fwBold;
+    color: $primary;
+  }
+  .articleList {
+    display: grid;
+    row-gap: vw(20);
   }
 }

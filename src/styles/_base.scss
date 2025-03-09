@@ -16,23 +16,23 @@ img  {
 }
 
 h1,h2,h3,h4,h5,h6 {
-  line-height: $lhS;
+  line-height: 1.4;
   letter-spacing: $lsM;
 }
 
 p,li,dt,dd,a,span {
-	line-height: $lhM;
+	line-height: 1.4;
 	letter-spacing: $lsM;
 }
 
 @include pc {
 	p,li,dt,dd,a,span {
-		font-size: #{$fzM}px;
+		font-size: 16px;
 	}
 }
 
 @include sp {
 	p,li,dt,dd,a,span {
-		font-size: vw($fzM);
+		font-size: vw(14);
 	}
 }
