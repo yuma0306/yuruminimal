@@ -3,7 +3,7 @@
 
 @include pc {
   .fv {
-    padding-bottom: #{$spaceL}px;
+    padding-bottom: 60px;
   }
   .slider {
     max-width: #{$InnerWidthMax}px;
@@ -65,7 +65,7 @@
 
 @include sp {
   .fv {
-    padding-bottom: vw($spaceM);
+    padding-bottom: vw(40);
   }
   .slider {
     margin-inline: auto;

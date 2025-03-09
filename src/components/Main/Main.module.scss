@@ -2,13 +2,13 @@
 @use '../../styles/config/import' as *;
 
 @include pc {
-  .holizonalSpacer {
-    padding-inline: #{$innerSpace}px;
+  .main {
+    padding-top: 40px;
   }
 }
 
 @include sp {
-  .holizonalSpacer {
-    padding-inline: vw($innerSpace);
+  .main {
+    padding-top: vw(20);
   }
 }

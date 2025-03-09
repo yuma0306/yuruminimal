@@ -3,7 +3,7 @@
 
 @include pc {
   .header {
-    padding: 20px 20px 40px;
+    padding: 20px;
   }
   .inner {
     display: flex;
@@ -52,7 +52,7 @@
 
 @include sp {
   .header {
-    padding: vw(20) 0 vw(10);
+    padding-top: vw(20);
   }
   .inner {
     display: grid;
