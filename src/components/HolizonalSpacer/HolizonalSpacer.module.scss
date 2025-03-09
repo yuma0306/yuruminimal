@@ -1,0 +1,11 @@
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
+
+@include pc {
+  .holizonalSpacer {
+    padding-inline: 20px;
+  }
+}
+
+@include sp {
+}

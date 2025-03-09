@@ -1,0 +1,18 @@
+@use '../../../styles/use/import' as *;
+@use '../../../styles/config/import' as *;
+
+@include pc {
+  .blockWrapper {
+    margin: -80px auto 0;
+  }
+  .list {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include sp {
+  .article {
+  }
+}

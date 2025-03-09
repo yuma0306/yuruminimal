@@ -1,6 +1,6 @@
-import styles from '@/components/CardLink2/CardLink2.module.scss';
 import Image, { type ImageProps } from 'next/image';
 import Link from 'next/link';
+import styles from './FvCard.module.scss';
 
 type Props = {
 	link: string;
@@ -11,7 +11,7 @@ type Props = {
 	title: string;
 } & Omit<ImageProps, 'src' | 'width' | 'height' | 'alt'>;
 
-export const CardLink2 = ({
+export const FvCard = ({
 	link,
 	image,
 	width,
@@ -32,12 +32,10 @@ export const CardLink2 = ({
 					{...restProps}
 				/>
 			</div>
-			<div className={styles.info}>
-				<time date-time={time} className={styles.time}>
-					{time}
-				</time>
-				<p className={styles.title}>{title}</p>
-			</div>
+			<time date-time={time} className={styles.time}>
+				{time}
+			</time>
+			<p className={styles.title}>{title}</p>
 		</Link>
 	);
 };

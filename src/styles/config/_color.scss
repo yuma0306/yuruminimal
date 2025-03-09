@@ -1,15 +1,21 @@
 $base: #0d1532;
-$white: #FFF;
+$white: #fff;
+$gray: #ccc;
 
 $primary: #490a5c;
 $primary10: color-mix(in srgb, $primary 10%, $white);
 $primary20: color-mix(in srgb, $primary 20%, $white);
 $primary50: color-mix(in srgb, $primary 50%, $white);
+$primary80: color-mix(in srgb, $primary 80%, $white);
+$primaryBlack: color-mix(in srgb, $primary, $base);
 
 $secondary: #26b9cd;
 $secondary10: color-mix(in srgb, $secondary 10%, $white);
 $secondary20: color-mix(in srgb, $secondary 20%, $white);
 $secondary50: color-mix(in srgb, $secondary 50%, $white);
+$secondary80: color-mix(in srgb, $secondary 80%, $white);
+$secondaryBlack: color-mix(in srgb, $secondary, $base);
+
 $Tertiary: #162253;
 
 $yellow: #ffcd2a;

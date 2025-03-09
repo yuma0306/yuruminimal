@@ -1,11 +1,11 @@
 'use client';
-import styles from '@/components/Fv/Fv.module.scss';
 import type { BlogType } from '@/libs/microcms.type';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import styles from './Fv.module.scss';
 import 'swiper/scss';
 import { media } from '@/constants/media';
-import { CardLink } from '../CardLink/CardLink';
+import { FvCard } from '@/features/home/FvCard/FvCard';
 
 type Props = {
 	posts: BlogType[];
@@ -34,23 +34,25 @@ export const Fv = ({ posts }: Props) => {
 					},
 				}}
 			>
-				{posts.map((post, index) =>
-					post.eyecatch?.width && post.eyecatch?.height && post.publishedAt ? (
-						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-						<SwiperSlide className={styles.sliderItem} key={index}>
-							<CardLink
-								link={`/blog/${post.category.id}/${post.id}`}
-								image={post.eyecatch.url}
-								width={post.eyecatch.width}
-								height={post.eyecatch.height}
-								time={post.publishedAt.slice(0, 10)}
-								title={post.title}
-								loading="eager"
-								decoding="auto"
-								priority
-							/>
-						</SwiperSlide>
-					) : undefined,
+				{posts.map(
+					(post, index) =>
+						post.eyecatch?.width &&
+						post.eyecatch?.height &&
+						post.publishedAt && (
+							<SwiperSlide className={styles.sliderItem} key={index}>
+								<FvCard
+									link={`/blog/${post.category.id}/${post.id}/`}
+									image={post.eyecatch.url}
+									width={post.eyecatch.width}
+									height={post.eyecatch.height}
+									time={post.publishedAt.slice(0, 10)}
+									title={post.title}
+									loading="eager"
+									decoding="auto"
+									priority
+								/>
+							</SwiperSlide>
+						),
 				)}
 			</Swiper>
 		</div>

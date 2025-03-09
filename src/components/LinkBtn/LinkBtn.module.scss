@@ -1,0 +1,28 @@
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
+
+@include pc {
+  .btn {
+    position: relative;
+    display: block;
+    width: fit-content;
+    margin-inline: auto;
+    padding: 10px 20px;
+    border-radius: 100vh;
+    font-weight: $fwMedium;
+    background-color: $secondary;
+    color: $white;
+    text-shadow: 0 0 2px $secondaryBlack;
+    background: linear-gradient(180deg, $secondary80 50%, $secondary 50%);
+    transition: $transition;
+    box-shadow: 0 3px 0 0 $secondaryBlack;
+    &:hover {
+      box-shadow: none;
+      transform: translateY(3px);
+    }
+  }
+}
+
+@include sp {
+
+}

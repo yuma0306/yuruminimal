@@ -32,10 +32,12 @@ export const CardLink = ({
 					{...restProps}
 				/>
 			</div>
-			<time date-time={time} className={styles.time}>
-				{time}
-			</time>
-			<p className={styles.title}>{title}</p>
+			<div className={styles.info}>
+				<time date-time={time} className={styles.time}>
+					{time}
+				</time>
+				<p className={styles.title}>{title}</p>
+			</div>
 		</Link>
 	);
 };

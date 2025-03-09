@@ -1,0 +1,17 @@
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
+
+@include pc {
+  .block {
+    padding: 20px;
+    background-color: $white;
+    max-width: calc(#{$innerWidth}px + 40px * 2);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px 0 $primary20;
+    margin-inline: auto;
+  }
+}
+
+@include sp {
+}

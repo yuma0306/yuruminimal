@@ -3,8 +3,8 @@
 
 @include pc {
   .link {
-    display: grid;
-    row-gap: 5px;
+    display: flex;
+    gap: 10px;
     &:hover {
       opacity: $opacity;
       .image {
@@ -14,42 +14,35 @@
   }
   .imageWrapper {
     overflow: hidden;
+    flex: 1;
   }
   .image {
     aspect-ratio: 16 / 9;
     width: 100%;
     transition: scale $transition, opacity $transition;
   }
+  .info {
+    display: grid;
+    row-gap: 10px;
+    align-self: start;
+    flex: 1;
+  }
   .time {
     display: block;
-    font-size: #{$fzSSPC}px;
+    font-size: 12px;
+    margin-top: hl();
+    line-height: 1;
   }
   .title {
-    font-size: #{$fzL}px;
+    font-size: 16px;
     font-weight: $fwMedium;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 4;
     overflow: hidden;
   }
 }
 
 @include sp {
-  .link {
-    display: block;
-  }
-  .image {
-    aspect-ratio: 16 / 9;
-  }
-  .time {
-    font-size: vw($fzSSPC);
-  }
-  .title {
-    font-size: vw($fzL);
-    font-weight: $fwMedium;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-  }
+
 }

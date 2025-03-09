@@ -1,0 +1,55 @@
+@use '../../../styles/use/import' as *;
+@use '../../../styles/config/import' as *;
+
+@include pc {
+  .link {
+    display: grid;
+    row-gap: 5px;
+    &:hover {
+      opacity: $opacity;
+      .image {
+        scale: $scale;
+      }
+    }
+  }
+  .imageWrapper {
+    overflow: hidden;
+  }
+  .image {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    transition: scale $transition, opacity $transition;
+  }
+  .time {
+    display: block;
+    font-size: #{$fzSSPC}px;
+  }
+  .title {
+    font-size: #{$fzL}px;
+    font-weight: $fwMedium;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+}
+
+@include sp {
+  .link {
+    display: block;
+  }
+  .image {
+    aspect-ratio: 16 / 9;
+  }
+  .time {
+    font-size: vw($fzSSPC);
+  }
+  .title {
+    font-size: vw($fzL);
+    font-weight: $fwMedium;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+}

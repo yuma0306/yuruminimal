@@ -4,7 +4,13 @@ const nextConfig: NextConfig = {
 	reactStrictMode: true,
 	trailingSlash: true,
 	images: {
-		domains: ['images.microcms-assets.io'],
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'images.microcms-assets.io',
+				pathname: '/**',
+			},
+		],
 	},
 };
 

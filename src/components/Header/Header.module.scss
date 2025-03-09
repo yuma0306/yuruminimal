@@ -3,7 +3,7 @@
 
 @include pc {
   .header {
-    padding: 20px;
+    padding: 20px 0 40px;
   }
   .inner {
     display: flex;
@@ -16,6 +16,9 @@
     color: $primary;
     font-weight: 700;
     font-size: 24px;
+    &[data-is-home='false'] {
+      @include hoverOpacity;
+    }
   }
   .inner {
     display: flex;
@@ -48,10 +51,12 @@
 }
 
 @include sp {
+  .header {
+    padding: vw(20) 0 vw(10);
+  }
   .inner {
     display: grid;
-    row-gap: vw($spaceSS);
-    padding-top: #{$spaceS}px;
+    row-gap: vw(8);
   }
   .logo {
     color: $primary;

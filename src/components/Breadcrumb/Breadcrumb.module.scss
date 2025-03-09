@@ -1,0 +1,41 @@
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
+@include pc {
+  .list {
+    display: flex;
+    align-items: end;
+    column-gap: 30px;
+    padding-bottom: 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    max-width: calc(#{$innerWidth}px + 40px * 2);
+    margin-inline: auto;
+  }
+  .item {
+    position: relative;
+    line-height: 1;
+    &:not(:last-of-type)::after {
+      position: absolute;
+      top: 50%;
+      right: -18px;
+      width: 8px;
+      height: 8px;
+      border-top: 2px solid $primary;
+      border-right: 2px solid $primary;
+      translate: 0 -50%;
+      rotate: 45deg;
+      content: "";
+    }
+    &:last-of-type {
+      flex: 1;
+    }
+  }
+  .link {
+    line-height: 1;
+    text-decoration: underline;
+    @include hoverOpacity;
+  }
+  .text {
+    line-height: 1;
+  }
+}

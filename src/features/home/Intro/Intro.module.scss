@@ -1,5 +1,5 @@
-@use '../../styles/use/import' as *;
-@use '../../styles/config/import' as *;
+@use '../../../styles/use/import' as *;
+@use '../../../styles/config/import' as *;
 
 @include pc {
   .intro {
@@ -64,7 +64,7 @@
       opacity: .5;
       content: '';
       transform-origin: center center;
-      animation: suisyou 8s ease-in-out infinite;
+      animation: suisyou 4s ease-in-out infinite;
     }
   }
 }
@@ -154,7 +154,7 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(50);
+    transform: scale(20);
   }
   100% {
     transform: scale(1);
