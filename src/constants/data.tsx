@@ -14,7 +14,4 @@ export const siteData = {
 			</>
 		),
 	},
-	blog: {
-		noPostText: '投稿はまだありません',
-	},
-};
+} as const;
