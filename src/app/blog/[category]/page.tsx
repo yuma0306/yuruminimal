@@ -31,5 +31,5 @@ export default async function BlogArchivePage({ params }: Props) {
 	if (!category || posts.length === 0) {
 		notFound();
 	}
-	return <BlogArchive posts={posts} category={posts[0]?.category.name} />;
+	return <BlogArchive posts={posts} />;
 }

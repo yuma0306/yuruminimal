@@ -10,42 +10,51 @@ import { siteData } from '@/constants/data';
 import styles from '@/features/blogs/BlogArchive/BlogArchive.module.scss';
 import type { BlogType, CategoryType } from '@/libs/microcms.type';
 
-interface Props {
+type Props = {
 	posts: BlogType[];
-	category: string;
-}
+};
 
-export const BlogArchive = ({ posts, category }: Props) => {
+export const BlogArchive = ({ posts }: Props) => {
+	if (posts.length === 0) {
+		return undefined;
+	}
+	const breadcrumbItems = [
+		{
+			text: 'トップ',
+			link: '/',
+		},
+		{
+			text: posts[0].category.name,
+			link: `/blog/${posts[0].category.id}/`,
+		},
+	];
+
 	return (
 		<Wrapper>
 			<Header />
 			<Main>
 				<HolizonalSpacer>
-					<Breadcrumb items={['トップ', category]} />
+					<Breadcrumb items={breadcrumbItems} />
 					<Block>
-						{posts.length === 0 ? (
-							<p>{siteData.blog.noPostText}</p>
-						) : (
-							<ul className={styles.list}>
-								{posts.map(
-									(post) =>
-										post.eyecatch?.width &&
-										post.eyecatch?.height &&
-										post.publishedAt && (
-											<li key={post.id.toString()} className={styles.item}>
-												<CardLink
-													link={`/blog/${post.category.id}/${post.id}/`}
-													image={post.eyecatch.url}
-													width={post.eyecatch.width}
-													height={post.eyecatch.height}
-													time={post.updatedAt.split('T')[0]}
-													title={post.title}
-												/>
-											</li>
-										),
-								)}
-							</ul>
-						)}
+						<ul className={styles.list}>
+							{posts.map(
+								(post) =>
+									post.eyecatch?.width &&
+									post.eyecatch?.height &&
+									post.publishedAt && (
+										<li key={post.id.toString()} className={styles.item}>
+											<CardLink
+												link={`/blog/${post.category.id}/${post.id}/`}
+												image={post.eyecatch.url}
+												width={post.eyecatch.width}
+												height={post.eyecatch.height}
+												time={post.updatedAt.split('T')[0]}
+												title={post.title}
+											/>
+										</li>
+									),
+							)}
+						</ul>
 					</Block>
 				</HolizonalSpacer>
 			</Main>

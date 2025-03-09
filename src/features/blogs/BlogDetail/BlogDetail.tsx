@@ -14,12 +14,26 @@ interface Props {
 }
 
 export const BlogDetail = ({ post }: Props) => {
+	const breadcrumbItems = [
+		{
+			text: 'トップ',
+			link: '/',
+		},
+		{
+			text: post.category.name,
+			link: `/blog/${post.category.id}/`,
+		},
+		{
+			text: post.title,
+			link: `/blog/${post.category.id}/${post.id}/`,
+		},
+	];
 	return (
 		<Wrapper>
 			<Header />
 			<Main>
 				<HolizonalSpacer>
-					<Breadcrumb items={['トップ', post.category.name, post.title]} />
+					<Breadcrumb items={breadcrumbItems} />
 					<Block>
 						<div className={styles.dateWrapper}>
 							<time className={styles.date}>
