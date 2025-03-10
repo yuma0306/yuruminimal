@@ -5,6 +5,7 @@ import type { MicroCMSQueries } from 'microcms-js-sdk';
 export const endpoints = {
 	blogs: 'blogs',
 	categories: 'categories',
+	info: 'info',
 } as const;
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {

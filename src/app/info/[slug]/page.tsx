@@ -9,14 +9,13 @@ import { HolizonalSpacer } from '@/components/HolizonalSpacer/HolizonalSpacer';
 import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
 import { endpoints, getDetailData, getListData } from '@/libs/microcms';
-import type { BlogType } from '@/libs/microcms.type';
+import type { InfoType } from '@/libs/microcms.type';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
-	const { contents } = await getListData<BlogType>(endpoints.blogs);
+	const { contents } = await getListData<InfoType>(endpoints.info);
 	const paths = contents.map((post) => {
 		return {
-			category: post.category.id,
 			slug: post.id,
 		};
 	});
@@ -27,15 +26,14 @@ export const dynamicParams = false;
 
 type Props = {
 	params: Promise<{
-		category: string;
 		slug: string;
 	}>;
 };
 
-export default async function BlogDetailPage({ params }: Props) {
-	const { category, slug } = await params;
-	const post = await getDetailData<BlogType>(endpoints.blogs, slug);
-	if (!post || !category) {
+export default async function InfoDetailPage({ params }: Props) {
+	const { slug } = await params;
+	const post = await getDetailData<InfoType>(endpoints.info, slug);
+	if (!post) {
 		notFound();
 	}
 	const breadcrumbItems = [
@@ -44,14 +42,11 @@ export default async function BlogDetailPage({ params }: Props) {
 			link: '/',
 		},
 		{
-			text: post.category.name,
-			link: `/blog/${post.category.id}/`,
-		},
-		{
 			text: post.title,
-			link: `/blog/${post.category.id}/${post.id}/`,
+			link: `/info/${post.id}/`,
 		},
 	];
+
 	return (
 		<Wrapper>
 			<Header />
@@ -64,7 +59,6 @@ export default async function BlogDetailPage({ params }: Props) {
 								createdAt={post.createdAt}
 								updatedAt={post.updatedAt}
 								title={post.title}
-								eyecatch={post.eyecatch}
 							/>
 							<ArticleBody html={post.content} />
 						</AppGrid>

@@ -18,3 +18,10 @@ export type CategoryType = {
 	id: MicroCMSContentId;
 	name: string;
 } & MicroCMSDate;
+
+export type InfoType = {
+	id: MicroCMSContentId;
+	title: string;
+	content: string;
+	description: string;
+} & MicroCMSDate;

@@ -1,38 +1,8 @@
-@use '../../../styles/use/import' as *;
-@use '../../../styles/config/import' as *;
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
 
 @include pc {
-  .block {
-    padding: 20px;
-    background-color: $white;
-    max-width: calc(#{$innerWidth}px + 40px * 2);
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px 0 $primary20;
-    margin-inline: auto;
-  }
-  .thumbnail {
-    display: block;
-    aspect-ratio: 16 / 9;
-    width: min(100%, 640px);
-    margin: 20px auto 0;
-  }
-  .dateWrapper {
-    display: flex;
-    place-content: center;
-    gap: 10px;
-  }
-  .date {
-    color: $gray02;
-    font-size: 14px;
-  }
-  .heading {
-    font-size: 28px;
-    text-align: center;
-    margin-top: 14px;
-  }
-  .cmsContent {
-    margin-top: 40px;
+  .articleBody {
     &:not(#_) > *:first-child {
       margin-top: 0;
     }
@@ -158,37 +128,7 @@
 }
 
 @include sp {
-  .block {
-    padding: vw(20);
-    background-color: $white;
-    max-width: calc(#{$innerWidth}vw + vw(40) * 2);
-    padding: vw(40);
-    border-radius: vw(8);
-    box-shadow: 0 0 vw(10) 0 $primary20;
-    margin-inline: auto;
-  }
-  .thumbnail {
-    display: block;
-    aspect-ratio: 16 / 9;
-    width: 100%;
-    margin: vw(20) auto 0;
-  }
-  .dateWrapper {
-    display: flex;
-    place-content: center;
-    gap: vw(10);
-  }
-  .date {
-    color: $gray02;
-    font-size: vw(14);
-  }
-  .heading {
-    font-size: vw(28);
-    text-align: center;
-    margin-top: vw(14);
-  }
-  .cmsContent {
-    margin-top: vw(40);
+  .articleBody {
     &:not(#_) > *:first-child {
       margin-top: 0;
     }
@@ -312,3 +252,4 @@
     }
   }
 }
+

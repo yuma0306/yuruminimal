@@ -1,5 +1,6 @@
 import { CardLink } from '@/components/CardLink/CardLink';
 import { LinkBtn } from '@/components/LinkBtn/LinkBtn';
+import { trimTimefromDate } from '@/functions/date';
 import { endpoints, getListData } from '@/libs/microcms';
 import type { BlogType } from '@/libs/microcms.type';
 import styles from './ArticleList.module.scss';
@@ -32,7 +33,7 @@ export const ArticleList = async ({ categorySlug, categoryName }: Props) => {
 									image={post.eyecatch.url}
 									width={post.eyecatch.width}
 									height={post.eyecatch.height}
-									time={post.updatedAt.split('T')[0]}
+									time={trimTimefromDate(post.updatedAt)}
 									title={post.title}
 								/>
 							</div>
