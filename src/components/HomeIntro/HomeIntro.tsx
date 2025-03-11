@@ -1,17 +1,21 @@
 import { Inner } from '@/components/Inner/Inner';
 import { siteData } from '@/constants/data';
-import styles from '@/features/home/Intro/Intro.module.scss';
 import Image from 'next/image';
-import uranaishi from '../../../../public/img/ill-uranaishi.png';
+import styles from './HomeIntro.module.scss';
 
-export const Intro = () => {
+export const HomeIntro = () => {
 	return (
 		<section className={styles.intro}>
 			<Inner>
 				<h2 className={styles.heading}>{siteData.intro.heading}</h2>
 				<div className={styles.block}>
 					<div className={styles.imageWrapper}>
-						<Image src={uranaishi} alt="" />
+						<Image
+							src={'/img/ill-uranaishi.png'}
+							width={371}
+							height={400}
+							alt=""
+						/>
 					</div>
 					<p className={styles.text}>{siteData.intro.content}</p>
 				</div>

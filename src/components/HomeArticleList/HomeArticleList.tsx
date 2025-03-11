@@ -3,14 +3,17 @@ import { LinkBtn } from '@/components/LinkBtn/LinkBtn';
 import { trimTimefromDate } from '@/functions/date';
 import { endpoints, getListData } from '@/libs/microcms';
 import type { BlogType } from '@/libs/microcms.type';
-import styles from './ArticleList.module.scss';
+import styles from './HomeArticleList.module.scss';
 
 type Props = {
 	categorySlug: string;
 	categoryName: string;
 };
 
-export const ArticleList = async ({ categorySlug, categoryName }: Props) => {
+export const HomeArticleList = async ({
+	categorySlug,
+	categoryName,
+}: Props) => {
 	const { contents: posts } = await getListData<BlogType>(endpoints.blogs, {
 		filters: `category[equals]${categorySlug}`,
 		limit: 2,

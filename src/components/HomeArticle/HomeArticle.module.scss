@@ -1,5 +1,5 @@
-@use '../../../styles/use/import' as *;
-@use '../../../styles/config/import' as *;
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
 
 @include pc {
   .blockWrapper {

@@ -1,6 +1,6 @@
 import Image, { type ImageProps } from 'next/image';
 import Link from 'next/link';
-import styles from './FvCard.module.scss';
+import styles from './HomeFvCard.module.scss';
 
 type Props = {
 	link: string;
@@ -11,7 +11,7 @@ type Props = {
 	title: string;
 } & Omit<ImageProps, 'src' | 'width' | 'height' | 'alt'>;
 
-export const FvCard = ({
+export const HomeFvCard = ({
 	link,
 	image,
 	width,

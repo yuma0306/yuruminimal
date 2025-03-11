@@ -1,4 +1,4 @@
-import { siteData } from '@/constants/data';
+import { siteName } from '@/constants/data';
 import { categoreisData } from '@/libs/microcms';
 import Link from 'next/link';
 import type React from 'react';
@@ -13,10 +13,10 @@ export const Header = async ({ isHome = false }: Props) => {
 		<header className={styles.header}>
 			<div className={styles.inner}>
 				{isHome ? (
-					<h1 className={styles.logo}>{siteData.meta.title}</h1>
+					<h1 className={styles.logo}>{siteName}</h1>
 				) : (
 					<Link href={'/'} className={styles.logo} data-is-home={isHome}>
-						{siteData.meta.title}
+						{siteName}
 					</Link>
 				)}
 				<nav className={styles.nav}>

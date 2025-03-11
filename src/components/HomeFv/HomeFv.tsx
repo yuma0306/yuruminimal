@@ -2,16 +2,16 @@
 import type { BlogType } from '@/libs/microcms.type';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import styles from './Fv.module.scss';
+import styles from './HomeFv.module.scss';
 import 'swiper/scss';
 import { media } from '@/constants/media';
-import { FvCard } from '@/features/home/FvCard/FvCard';
+import { HomeFvCard } from '../HomeFvCard/HomeFvCard';
 
 type Props = {
 	posts: BlogType[];
 };
 
-export const Fv = ({ posts }: Props) => {
+export const HomeFv = ({ posts }: Props) => {
 	return (
 		<div className={styles.fv}>
 			<Swiper
@@ -40,7 +40,7 @@ export const Fv = ({ posts }: Props) => {
 						post.eyecatch?.height &&
 						post.publishedAt && (
 							<SwiperSlide className={styles.sliderItem} key={index}>
-								<FvCard
+								<HomeFvCard
 									link={`/blog/${post.category.id}/${post.id}/`}
 									image={post.eyecatch.url}
 									width={post.eyecatch.width}
