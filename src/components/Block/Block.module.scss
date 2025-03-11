@@ -5,7 +5,7 @@
   .block {
     padding: 20px;
     background-color: $white;
-    max-width: calc(#{$innerWidth}px + 40px * 2);
+    max-width: calc(#{$innerWidth}px + 40px);
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 0 10px 0 $primary20;

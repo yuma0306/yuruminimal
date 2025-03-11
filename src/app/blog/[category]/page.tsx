@@ -7,9 +7,16 @@ import { Header } from '@/components/Header/Header';
 import { HolizonalSpacer } from '@/components/HolizonalSpacer/HolizonalSpacer';
 import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
+import {
+	commonMetaData,
+	descriptionSuffix,
+	notFoundTitle,
+	titleSuffix,
+} from '@/constants/data';
 import { trimTimefromDate } from '@/functions/date';
 import { endpoints, getListData } from '@/libs/microcms';
-import type { BlogType, CategoryType } from '@/libs/microcms.type';
+import type { BlogType, CategoryType, InfoType } from '@/libs/microcms.type';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
@@ -25,6 +32,27 @@ export async function generateStaticParams() {
 }
 
 export const dynamicParams = false;
+
+export async function generateMetadata({
+	params,
+}: { params: { category: string } }): Promise<Metadata> {
+	const { category } = await params;
+	const { contents: posts } = await getListData<BlogType>(endpoints.blogs, {
+		filters: `category[equals]${category}`,
+	});
+	if (!category || posts.length === 0) {
+		return {
+			title: notFoundTitle + titleSuffix,
+			description: notFoundTitle + descriptionSuffix,
+			...commonMetaData,
+		};
+	}
+	return {
+		title: `${posts[0].category.name}の記事一覧${titleSuffix}`,
+		description: `${posts[0].category.name}の記事一覧${descriptionSuffix}`,
+		...commonMetaData,
+	};
+}
 
 type Props = {
 	params: Promise<{
@@ -46,7 +74,7 @@ export default async function BlogArchivePage({ params }: Props) {
 			link: '/',
 		},
 		{
-			text: posts[0].category.name,
+			text: `${posts[0].category.name}の記事一覧`,
 			link: `/blog/${posts[0].category.id}/`,
 		},
 	];

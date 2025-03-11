@@ -8,8 +8,15 @@ import { Header } from '@/components/Header/Header';
 import { HolizonalSpacer } from '@/components/HolizonalSpacer/HolizonalSpacer';
 import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
+import {
+	commonMetaData,
+	descriptionSuffix,
+	notFoundTitle,
+	titleSuffix,
+} from '@/constants/data';
 import { endpoints, getDetailData, getListData } from '@/libs/microcms';
 import type { BlogType } from '@/libs/microcms.type';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
@@ -24,6 +31,25 @@ export async function generateStaticParams() {
 }
 
 export const dynamicParams = false;
+
+export async function generateMetadata({
+	params,
+}: { params: { slug: string } }): Promise<Metadata> {
+	const { slug } = await params;
+	const post = await getDetailData<BlogType>(endpoints.blogs, slug);
+	if (!post) {
+		return {
+			title: notFoundTitle + titleSuffix,
+			description: notFoundTitle + descriptionSuffix,
+			...commonMetaData,
+		};
+	}
+	return {
+		title: post.title + titleSuffix,
+		description: post.description + descriptionSuffix,
+		...commonMetaData,
+	};
+}
 
 type Props = {
 	params: Promise<{
@@ -44,7 +70,7 @@ export default async function BlogDetailPage({ params }: Props) {
 			link: '/',
 		},
 		{
-			text: post.category.name,
+			text: `${post.category.name}の記事一覧`,
 			link: `/blog/${post.category.id}/`,
 		},
 		{

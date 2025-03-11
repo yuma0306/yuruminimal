@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: #{$innerWidth}px;
+    max-width: calc(#{$innerWidth}px - (#{$innerSpace}px * 2));
     margin-inline: auto;
   }
   .logo {

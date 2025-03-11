@@ -9,5 +9,5 @@ $pcCompWidth: 1280;
 
 // inner
 $InnerWidthMax: 1920;
-$innerWidth: 1000;
 $innerSpace: 20;
+$innerWidth: 1000 + ($innerSpace * 2);

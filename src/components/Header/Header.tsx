@@ -2,6 +2,7 @@ import { siteName } from '@/constants/data';
 import { categoreisData } from '@/libs/microcms';
 import Link from 'next/link';
 import type React from 'react';
+import { Inner } from '../Inner/Inner';
 import styles from './Header.module.scss';
 
 type Props = {

@@ -12,6 +12,7 @@ export type BlogType = {
 	label: string;
 	category: CategoryType;
 	recommend: boolean;
+	description: string;
 } & MicroCMSDate;
 
 export type CategoryType = {

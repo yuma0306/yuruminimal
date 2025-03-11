@@ -8,7 +8,12 @@ import { Header } from '@/components/Header/Header';
 import { HolizonalSpacer } from '@/components/HolizonalSpacer/HolizonalSpacer';
 import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
-import { notFoundTitle } from '@/constants/data';
+import {
+	commonMetaData,
+	descriptionSuffix,
+	notFoundTitle,
+	titleSuffix,
+} from '@/constants/data';
 import { endpoints, getDetailData, getListData } from '@/libs/microcms';
 import type { InfoType } from '@/libs/microcms.type';
 import { notFound } from 'next/navigation';
@@ -26,27 +31,30 @@ export async function generateStaticParams() {
 
 export const dynamicParams = false;
 
+export async function generateMetadata({
+	params,
+}: { params: { slug: string } }): Promise<Metadata> {
+	const { slug } = await params;
+	const post = await getDetailData<InfoType>(endpoints.info, slug);
+	if (!post) {
+		return {
+			title: notFoundTitle + titleSuffix,
+			description: notFoundTitle + descriptionSuffix,
+			...commonMetaData,
+		};
+	}
+	return {
+		title: post.title + titleSuffix,
+		description: post.description + descriptionSuffix,
+		...commonMetaData,
+	};
+}
+
 type Props = {
 	params: Promise<{
 		slug: string;
 	}>;
 };
-
-export async function generateMetadata({
-	params,
-}: { params: { slug: string } }): Promise<Metadata> {
-	const post = await getDetailData<InfoType>(endpoints.info, params.slug);
-	if (!post) {
-		return {
-			title: notFoundTitle,
-			description: notFoundTitle,
-		};
-	}
-	return {
-		title: post.title,
-		description: post.description,
-	};
-}
 
 export default async function InfoDetailPage({ params }: Props) {
 	const post = await getDetailData<InfoType>(
