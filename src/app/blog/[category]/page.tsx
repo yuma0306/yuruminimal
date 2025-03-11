@@ -33,9 +33,13 @@ export async function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export async function generateMetadata({
-	params,
-}: { params: { category: string } }): Promise<Metadata> {
+type Props = {
+	params: Promise<{
+		category: string;
+	}>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { category } = await params;
 	const { contents: posts } = await getListData<BlogType>(endpoints.blogs, {
 		filters: `category[equals]${category}`,
@@ -53,12 +57,6 @@ export async function generateMetadata({
 		...commonMetaData,
 	};
 }
-
-type Props = {
-	params: Promise<{
-		category: string;
-	}>;
-};
 
 export default async function BlogArchivePage({ params }: Props) {
 	const { category } = await params;

@@ -4,7 +4,7 @@
 @include pc {
   .list {
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     column-gap: 30px;
     padding-bottom: 20px;
     overflow-x: auto;
@@ -43,7 +43,7 @@
 @include sp {
   .list {
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     column-gap: vw(30);
     padding-bottom: vw(10);
     overflow-x: auto;
