@@ -7,6 +7,7 @@
     aspect-ratio: 16 / 9;
     width: min(100%, 640px);
     margin: 20px auto 0;
+    animation: spiritual 10s ease-in-out infinite;
   }
   .dateWrapper {
     display: flex;
@@ -30,6 +31,7 @@
     aspect-ratio: 16 / 9;
     width: 100%;
     margin: vw(20) auto 0;
+    animation: spiritual 10s ease-in-out infinite;
   }
   .dateWrapper {
     display: flex;
@@ -44,5 +46,17 @@
     font-size: vw(28);
     text-align: center;
     margin-top: vw(14);
+  }
+}
+
+@keyframes spiritual {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(50deg);
+  }
+  100% {
+    filter: hue-rotate(0deg);
   }
 }
