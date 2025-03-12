@@ -1,0 +1,14 @@
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
+
+@include pc {
+  .main {
+    padding-top: 40px;
+  }
+}
+
+@include sp {
+  .main {
+    padding-top: vw(20);
+  }
+}

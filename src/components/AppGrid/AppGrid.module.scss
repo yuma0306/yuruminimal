@@ -1,0 +1,27 @@
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
+
+@include pc {
+  .grid {
+    display: grid;
+    gap: 40px;
+    &[data-col='true'] {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@include tab {
+  .grid {
+    &[data-col='true'] {
+      grid-template-columns: auto;
+    }
+  }
+}
+
+@include sp {
+  .grid {
+    display: grid;
+    gap: vw(20);
+  }
+}

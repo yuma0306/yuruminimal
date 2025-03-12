@@ -1,0 +1,24 @@
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
+
+@include pc {
+  .block {
+    padding: 20px;
+    background-color: $white;
+    max-width: calc(#{$innerWidth}px + 40px);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px 0 $primary20;
+    margin-inline: auto;
+  }
+}
+
+@include sp {
+  .block {
+    padding: vw(20);
+    background-color: $white;
+    padding: vw(20);
+    border-radius: vw(8);
+    box-shadow: 0 0 vw(10) 0 $primary20;
+  }
+}

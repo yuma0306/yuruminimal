@@ -1,0 +1,92 @@
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
+
+@include pc {
+  .header {
+    padding: 20px;
+  }
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: calc(#{$innerWidth}px - (#{$innerSpace}px * 2));
+    margin-inline: auto;
+  }
+  .logo {
+    color: $primary;
+    font-weight: 700;
+    font-size: 24px;
+    &[data-is-home='false'] {
+      @include hoverOpacity;
+    }
+  }
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .list {
+    display: flex;
+  }
+  .item {
+    border-left: 1px solid $primary;
+    &:first-of-type {
+      border: none;
+    }
+  }
+  .link {
+    display: block;
+    padding: 0 20px;
+    text-align: center;
+    font-weight: $fwMedium;
+    @include hoverOpacity
+  }
+}
+
+@include tab {
+  .inner {
+    flex-direction: column;
+    row-gap: 10px;
+  }
+}
+
+@include sp {
+  .header {
+    padding-top: vw(20);
+  }
+  .inner {
+    display: grid;
+    row-gap: vw(8);
+  }
+  .logo {
+    color: $primary;
+    font-weight: 700;
+    text-shadow: vw(1) 0 vw(10) $white;
+    font-size: vw(22);
+    text-align: center;
+  }
+  .nav {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: fit-content;
+    margin-inline: auto;
+    padding-bottom: vw(10);
+  }
+  .item {
+    border-left: vw(1) solid $primary;
+    &:first-of-type {
+      border: none;
+    }
+  }
+  .link {
+    padding-inline: vw(10);
+    text-align: center;
+    font-weight: $fwMedium;
+    @include hoverOpacity
+  }
+}

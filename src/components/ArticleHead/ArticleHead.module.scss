@@ -1,0 +1,62 @@
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
+
+@include pc {
+  .thumbnail {
+    display: block;
+    aspect-ratio: 16 / 9;
+    width: min(100%, 640px);
+    margin: 20px auto 0;
+    animation: spiritual 10s ease-in-out infinite;
+  }
+  .dateWrapper {
+    display: flex;
+    place-content: center;
+    gap: 10px;
+  }
+  .date {
+    color: $gray02;
+    font-size: 14px;
+  }
+  .heading {
+    font-size: 28px;
+    text-align: center;
+    margin-top: 14px;
+  }
+}
+
+@include sp {
+  .thumbnail {
+    display: block;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    margin: vw(20) auto 0;
+    animation: spiritual 10s ease-in-out infinite;
+  }
+  .dateWrapper {
+    display: flex;
+    place-content: center;
+    gap: vw(10);
+  }
+  .date {
+    color: $gray02;
+    font-size: vw(14);
+  }
+  .heading {
+    font-size: vw(28);
+    text-align: center;
+    margin-top: vw(14);
+  }
+}
+
+@keyframes spiritual {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(50deg);
+  }
+  100% {
+    filter: hue-rotate(0deg);
+  }
+}

@@ -1,30 +1,37 @@
-import { meta } from '@/constants/meta';
-import { endpoints, getListData } from '@/features/microcms';
-import type { CategoryType } from '@/types/microcms.type';
+import { siteName } from '@/constants/data';
+import { categoreisData } from '@/libs/microcms';
 import Link from 'next/link';
 import type React from 'react';
 import { Inner } from '../Inner/Inner';
+import styles from './Header.module.scss';
 
 type Props = {
-	as?: 'p' | 'h1';
+	isHome?: boolean;
 };
 
-export const Header = async ({ as: Component = 'p' }: Props) => {
-	const { contents: categories } = await getListData<CategoryType>(
-		endpoints.categories,
-	);
+export const Header = async ({ isHome = false }: Props) => {
 	return (
-		<header>
-			<Inner>
-				<Component>{meta.siteName}</Component>
-				<ul>
-					{categories.map((category) => (
-						<li key={category.id}>
-							<Link href={category.id}>{category.name}</Link>
-						</li>
-					))}
-				</ul>
-			</Inner>
+		<header className={styles.header}>
+			<div className={styles.inner}>
+				{isHome ? (
+					<h1 className={styles.logo}>{siteName}</h1>
+				) : (
+					<Link href={'/'} className={styles.logo} data-is-home={isHome}>
+						{siteName}
+					</Link>
+				)}
+				<nav className={styles.nav}>
+					<ul className={styles.list}>
+						{categoreisData.map((category) => (
+							<li key={category.id} className={styles.item}>
+								<Link href={`/blog/${category.id}/`} className={styles.link}>
+									{category.name}
+								</Link>
+							</li>
+						))}
+					</ul>
+				</nav>
+			</div>
 		</header>
 	);
 };

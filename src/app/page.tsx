@@ -1,66 +1,44 @@
 import { Footer } from '@/components/Footer/Footer';
-import { Fv } from '@/components/Fv/Fv';
 import { Header } from '@/components/Header/Header';
-import { Inner } from '@/components/Inner/Inner';
+import { HomeArticle } from '@/components/HomeArticle/HomeArticle';
+import { HomeFv } from '@/components/HomeFv/HomeFv';
+import { HomeIntro } from '@/components/HomeIntro/HomeIntro';
+import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
-import { endpoints, getListData } from '@/features/microcms';
-import type { BlogType } from '@/types/microcms.type';
+import { commonMetaData, siteDescription, siteName } from '@/constants/data';
+import { endpoints, getListData } from '@/libs/microcms';
+import type { BlogType } from '@/libs/microcms.type';
+import type { Metadata } from 'next';
 
-export default async function Home() {
+export const metadata: Metadata = {
+	title: siteName,
+	description: siteDescription,
+	...commonMetaData,
+};
+
+export default async function HomePage() {
 	const { contents: posts } = await getListData<BlogType>(endpoints.blogs, {
 		filters: 'recommend[equals]true',
 	});
-	if (!posts || posts.length === 0) {
-		return <h1>投稿はまだありません</h1>;
-	}
+
 	return (
 		<Wrapper>
-			<Header as={'h1'} />
-			<div>
-				<Inner>
-					<Fv posts={posts} />
-				</Inner>
-			</div>
-			<section>
-				<Inner>
-					<p>
-						ようこそ、スピスピへ！
-						<br />
-						スピスピでは、世界中の不思議な都市伝説、スピリチュアルな体験、そして目に見えないエネルギーについて探求します。
-						<br />
-						現実との狭間に隠された真実とは？スピリチュアルを信じるかどうかはあなた次第。
-						<br />
-						あなたの知らない世界への扉を一緒に開いてみませんか？？
-					</p>
-					<ul>
-						<li>
-							<h2>都市伝説の記事</h2>
-							<ul>
-								<li>あああ</li>
-							</ul>
-						</li>
-						<li>
-							<h2>スピリチュアルの記事</h2>
-							<ul>
-								<li>あああ</li>
-							</ul>
-						</li>
-						<li>
-							<h2>心理学の記事</h2>
-							<ul>
-								<li>あああ</li>
-							</ul>
-						</li>
-						<li>
-							<h2>自然科学の記事</h2>
-							<ul>
-								<li>あああ</li>
-							</ul>
-						</li>
-					</ul>
-				</Inner>
-			</section>
+			<Header isHome />
+			<Main>
+				<HomeFv posts={minFvPostLength ? copyPosts(posts) : posts} />
+				<HomeIntro />
+				<HomeArticle />
+			</Main>
 			<Footer />
 		</Wrapper>
 	);
+}
+
+const minFvPostLength = 6;
+
+function copyPosts(posts: BlogType[]) {
+	if (posts.length === 0) return [];
+	if (posts.length > minFvPostLength) return posts;
+	const doubledPosts = [...posts, ...posts];
+	return copyPosts(doubledPosts);
 }

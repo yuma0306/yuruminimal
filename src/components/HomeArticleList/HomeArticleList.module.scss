@@ -1,0 +1,37 @@
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
+
+@include pc {
+  .item {
+    display: grid;
+    row-gap: 24px;
+    align-self: start;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+  }
+  .heading {
+    font-size: 24px;
+    font-weight: $fwBold;
+    color: $primary;
+  }
+  .articleList {
+    display: grid;
+    row-gap: 20px;
+  }
+}
+
+@include sp {
+  .item {
+    display: grid;
+    row-gap: vw(24);
+  }
+  .heading {
+    font-size: vw(20);
+    font-weight: $fwBold;
+    color: $primary;
+  }
+  .articleList {
+    display: grid;
+    row-gap: vw(20);
+  }
+}

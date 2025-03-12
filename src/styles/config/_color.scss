@@ -1,20 +1,25 @@
-$primary: #DF5656;
-$primary02: #FFF3F0;
-$primary03: #960505;
+$base: #0d1532;
+$white: #fff;
 
-$yellow: #FFCD2A;
-$yellow02: #FEF1C9;
+$gray: #ccc;
+$gray02: #7B7B7B;
 
-$green: #04A149;
-$green02: #EBFFF4;
+$primary: #490a5c;
+$primary10: color-mix(in srgb, $primary 10%, $white);
+$primary20: color-mix(in srgb, $primary 20%, $white);
+$primary50: color-mix(in srgb, $primary 50%, $white);
+$primary80: color-mix(in srgb, $primary 80%, $white);
+$primaryBlack: color-mix(in srgb, $primary, $base);
 
-$red: #F60001;
-$red02: #FFDEDE;
+$secondary: #26b9cd;
+$secondary10: color-mix(in srgb, $secondary 10%, $white);
+$secondary20: color-mix(in srgb, $secondary 20%, $white);
+$secondary50: color-mix(in srgb, $secondary 50%, $white);
+$secondary80: color-mix(in srgb, $secondary 80%, $white);
+$secondaryBlack: color-mix(in srgb, $secondary, $base);
 
-$gray: #CCC;
-$gray02: #AAA;
-$gray03: #f7f7f7;
+$yellow: #ffcd2a;
+$yellow50: color-mix(in srgb, $yellow 50%, $white);
 
-$black: #333;
-
-$white: #FFF;
+$gradation: linear-gradient(90deg, $primary, $secondary);
+$gradation20: linear-gradient(90deg, $primary20, $secondary20);
