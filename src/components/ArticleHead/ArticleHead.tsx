@@ -36,7 +36,7 @@ export const ArticleHead = ({
 					{tags.map((tag, index) => {
 						return (
 							<li className={styles.tag} key={index}>
-								<Link href={''} className={styles.link}>
+								<Link href={`/tag/${tag.id}/`} className={styles.link}>
 									#{tag.name}
 								</Link>
 							</li>
