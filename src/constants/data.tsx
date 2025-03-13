@@ -1,4 +1,4 @@
-export const siteName = 'スピスピブログ';
+export const siteName = '海外ゆるミニマリスト';
 export const siteDescription = `${siteName}では都市伝説やスピリチュアルについての情報を発信しています`;
 
 export const titleSuffix = ` | ${siteName}`;
@@ -27,12 +27,10 @@ export const commonMetaData = {
 
 export const siteData = {
 	intro: {
-		heading: `${siteName}へようこそ`,
+		heading: 'ゆるミニマリストとは',
 		content: (
 			<>
-				スピスピでは、普段は人に言えない世界中の都市伝説、目に見えないスピリチュアルなエネルギーについて発信しています。
-				<br />
-				現実との狭間に隠された真実とは？信じるかどうかはあなた次第。
+				ゆるミニマリストとは、無理しないミニマリストで大切なものにフォーカスを当てた誰でも実践しやすい生き方。
 				<br />
 				あなたの知らない世界への扉を一緒に開いてみませんか？？
 			</>

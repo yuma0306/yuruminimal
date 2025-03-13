@@ -1,24 +1,26 @@
 import { Inner } from '@/components/Inner/Inner';
 import { siteData } from '@/constants/data';
-import Image from 'next/image';
+import { endpoints, getListData } from '@/libs/microcms';
+import type { TagType } from '@/libs/microcms.type';
+import Link from 'next/link';
 import styles from './HomeIntro.module.scss';
 
-export const HomeIntro = () => {
+export const HomeIntro = async () => {
+	const { contents: tags } = await getListData<TagType>(endpoints.tags);
 	return (
 		<section className={styles.intro}>
 			<Inner>
 				<h2 className={styles.heading}>{siteData.intro.heading}</h2>
-				<div className={styles.block}>
-					<div className={styles.imageWrapper}>
-						<Image
-							src={'/img/ill-uranaishi.png'}
-							width={371}
-							height={400}
-							alt=""
-						/>
-					</div>
-					<p className={styles.text}>{siteData.intro.content}</p>
-				</div>
+				<p className={styles.text}>{siteData.intro.content}</p>
+				<ul className={styles.tags}>
+					{tags.map((tag) => (
+						<li key={tag.id} className={styles.tag}>
+							<Link className={styles.link} href={`/tag/${tag.id}/`}>
+								#{tag.name}
+							</Link>
+						</li>
+					))}
+				</ul>
 			</Inner>
 		</section>
 	);

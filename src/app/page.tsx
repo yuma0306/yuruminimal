@@ -1,6 +1,5 @@
 import { Footer } from '@/components/Footer/Footer';
 import { Header } from '@/components/Header/Header';
-import { HomeArticle } from '@/components/HomeArticle/HomeArticle';
 import { HomeFv } from '@/components/HomeFv/HomeFv';
 import { HomeIntro } from '@/components/HomeIntro/HomeIntro';
 import { Main } from '@/components/Main/Main';
@@ -27,7 +26,6 @@ export default async function HomePage() {
 			<Main>
 				<HomeFv posts={minFvPostLength ? copyPosts(posts) : posts} />
 				<HomeIntro />
-				<HomeArticle />
 			</Main>
 			<Footer />
 		</Wrapper>

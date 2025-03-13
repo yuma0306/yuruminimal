@@ -10,12 +10,12 @@ export type BlogType = {
 	content: string;
 	eyecatch?: MicroCMSImage;
 	label: string;
-	category: CategoryType;
+	tags: TagType[];
 	recommend: boolean;
 	description: string;
 } & MicroCMSDate;
 
-export type CategoryType = {
+export type TagType = {
 	id: MicroCMSContentId;
 	name: string;
 } & MicroCMSDate;

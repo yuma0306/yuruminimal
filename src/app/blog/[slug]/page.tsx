@@ -23,7 +23,6 @@ export async function generateStaticParams() {
 	const { contents } = await getListData<BlogType>(endpoints.blogs);
 	const paths = contents.map((post) => {
 		return {
-			category: post.category.id,
 			slug: post.id,
 		};
 	});
@@ -34,7 +33,6 @@ export const dynamicParams = false;
 
 type Props = {
 	params: Promise<{
-		category: string;
 		slug: string;
 	}>;
 };
@@ -57,9 +55,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function BlogDetailPage({ params }: Props) {
-	const { category, slug } = await params;
+	const { slug } = await params;
 	const post = await getDetailData<BlogType>(endpoints.blogs, slug);
-	if (!post || !category) {
+	if (!post) {
 		notFound();
 	}
 	const breadcrumbItems = [
@@ -68,12 +66,8 @@ export default async function BlogDetailPage({ params }: Props) {
 			link: '/',
 		},
 		{
-			text: `${post.category.name}の記事一覧`,
-			link: `/blog/${post.category.id}/`,
-		},
-		{
 			text: post.title,
-			link: `/blog/${post.category.id}/${post.id}/`,
+			link: `/blog/${post.id}/`,
 		},
 	];
 	return (
@@ -89,6 +83,7 @@ export default async function BlogDetailPage({ params }: Props) {
 								updatedAt={post.updatedAt}
 								title={post.title}
 								eyecatch={post.eyecatch}
+								tags={post.tags}
 							/>
 							<ArticleBody html={post.content} />
 						</AppGrid>

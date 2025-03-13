@@ -3,8 +3,9 @@
 
 @include pc {
   .link {
-    display: grid;
-    row-gap: 5px;
+    display: block;
+    background-color: $white;
+    box-shadow: 0 0 4px 4px $primary10;
     &:hover {
       opacity: $opacity;
       .image {
@@ -19,6 +20,11 @@
     aspect-ratio: 16 / 9;
     width: 100%;
     transition: scale $transition, opacity $transition;
+  }
+  .body {
+    padding: 20px;
+    display: grid;
+    row-gap: 5px;
   }
   .time {
     display: block;

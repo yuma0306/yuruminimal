@@ -15,17 +15,15 @@ import {
 } from '@/constants/data';
 import { trimTimefromDate } from '@/functions/date';
 import { endpoints, getListData } from '@/libs/microcms';
-import type { BlogType, CategoryType, InfoType } from '@/libs/microcms.type';
+import type { BlogType, TagType } from '@/libs/microcms.type';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
-	const { contents: categories } = await getListData<CategoryType>(
-		endpoints.categories,
-	);
-	const paths = categories.map((category) => {
+	const { contents: tags } = await getListData<TagType>(endpoints.tags);
+	const paths = tags.map((tag) => {
 		return {
-			category: category.id,
+			slug: tag.id,
 		};
 	});
 	return paths;
@@ -35,45 +33,65 @@ export const dynamicParams = false;
 
 type Props = {
 	params: Promise<{
-		category: string;
+		slug: string;
 	}>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-	const { category } = await params;
-	const { contents: posts } = await getListData<BlogType>(endpoints.blogs, {
-		filters: `category[equals]${category}`,
+	const { slug } = await params;
+
+	const { contents: tagContents } = await getListData<TagType>(endpoints.tags, {
+		filters: `id[equals]${slug}`,
 	});
-	if (!category || posts.length === 0) {
+
+	if (tagContents.length === 0) {
 		return {
 			title: notFoundTitle + titleSuffix,
 			description: notFoundTitle + descriptionSuffix,
 			...commonMetaData,
 		};
 	}
+
+	const tagName = tagContents[0].name;
+
 	return {
-		title: `${posts[0].category.name}の記事一覧${titleSuffix}`,
-		description: `${posts[0].category.name}の記事一覧${descriptionSuffix}`,
+		title: `${tagName}の記事一覧${titleSuffix}`,
+		description: `${tagName}の記事一覧${descriptionSuffix}`,
 		...commonMetaData,
 	};
 }
 
-export default async function BlogArchivePage({ params }: Props) {
-	const { category } = await params;
-	const { contents: posts } = await getListData<BlogType>(endpoints.blogs, {
-		filters: `category[equals]${category}`,
+export default async function TagArchivePage({ params }: Props) {
+	const { slug } = await params;
+
+	const { contents: tagContents } = await getListData<TagType>(endpoints.tags, {
+		filters: `id[equals]${slug}`,
 	});
-	if (!category || posts.length === 0) {
+
+	if (tagContents.length === 0) {
 		notFound();
 	}
+
+	const tagName = tagContents[0].name;
+
+	const { contents } = await getListData<BlogType>(endpoints.blogs);
+
+	const posts = contents.filter((item) =>
+		item.tags.some((tag) => tag.id.toString() === slug),
+	);
+
+	if (posts.length === 0) {
+		notFound();
+	}
+
 	const breadcrumbItems = [
 		{
 			text: 'トップ',
 			link: '/',
 		},
 		{
-			text: `${posts[0].category.name}の記事一覧`,
-			link: `/blog/${posts[0].category.id}/`,
+			text: `#${tagName}の記事一覧`,
+			link: `/tag/${slug}/`,
 		},
 	];
 
@@ -92,7 +110,7 @@ export default async function BlogArchivePage({ params }: Props) {
 									post.publishedAt && (
 										<li key={post.id.toString()}>
 											<CardLink
-												link={`/blog/${post.category.id}/${post.id}/`}
+												link={`/blog/${post.id}/`}
 												image={post.eyecatch.url}
 												width={post.eyecatch.width}
 												height={post.eyecatch.height}

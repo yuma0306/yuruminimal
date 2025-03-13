@@ -21,12 +21,12 @@
       width: 14px;
       height: 14px;
       border-radius: 50%;
-      border: 1px solid $secondary;
+      border: 1px solid $primary;
       background-color: $white;
       cursor: pointer;
     }
     :global(.swiper-pagination-bullet-active) {
-      background-color: $secondary;
+      background-color: $primary;
       border: 1px solid $white;
     }
     :global(.swiper-button-prev),
@@ -36,7 +36,7 @@
       right: #{$innerSpace}px;
       width: 30px;
       aspect-ratio: 1;
-      background: $secondary;
+      background: $primary;
       border-radius: 50%;
       border: 1px solid $white;
       cursor: pointer;
@@ -82,12 +82,12 @@
       width: vw(14);
       height: vw(14);
       border-radius: 50%;
-      border: vw(1) solid $secondary;
+      border: vw(1) solid $primary;
       background: $white;
       cursor: pointer;
     }
     :global(.swiper-pagination-bullet-active) {
-      background: $secondary;
+      background: $primary;
       border: 1px solid $white;
     }
     :global(.swiper-button-prev),
@@ -97,7 +97,7 @@
       position: absolute;
       width: vw(30);
       height: vw(30);
-      background: $secondary;
+      background: $primary;
       border-radius: 50%;
       z-index: $zIndexPlus;
       border: vw(1) solid $white;

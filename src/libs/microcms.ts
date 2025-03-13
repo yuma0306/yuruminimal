@@ -1,10 +1,9 @@
-import type { CategoryType } from '@/libs/microcms.type';
 import { createClient } from 'microcms-js-sdk';
 import type { MicroCMSQueries } from 'microcms-js-sdk';
 
 export const endpoints = {
 	blogs: 'blogs',
-	categories: 'categories',
+	tags: 'tags',
 	info: 'info',
 } as const;
 
@@ -43,22 +42,3 @@ export const getDetailData = async <T>(
 	});
 	return detailData;
 };
-
-const getCategories = async () => {
-	const { contents: categoreisData } = await getListData<CategoryType>(
-		endpoints.categories,
-	);
-	const categoriesMap = categoreisData.reduce<Record<string, string>>(
-		(acc, category) => {
-			acc[category.id] = category.name;
-			return acc;
-		},
-		{},
-	);
-	return {
-		categoreisData,
-		categoriesMap,
-	};
-};
-
-export const { categoreisData, categoriesMap } = await getCategories();

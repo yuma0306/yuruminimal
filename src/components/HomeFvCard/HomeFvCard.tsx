@@ -32,10 +32,12 @@ export const HomeFvCard = ({
 					{...restProps}
 				/>
 			</div>
-			<time date-time={time} className={styles.time}>
-				{time}
-			</time>
-			<p className={styles.title}>{title}</p>
+			<div className={styles.body}>
+				<time date-time={time} className={styles.time}>
+					{time}
+				</time>
+				<p className={styles.title}>{title}</p>
+			</div>
 		</Link>
 	);
 };

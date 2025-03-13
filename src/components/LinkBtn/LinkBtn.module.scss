@@ -11,12 +11,12 @@
     padding: 10px 20px;
     border-radius: 100vh;
     font-weight: $fwMedium;
-    background-color: $secondary;
+    background-color: $primary;
     color: $white;
-    text-shadow: 0 0 2px $secondaryBlack;
-    background: linear-gradient(180deg, $secondary80 50%, $secondary 50%);
+    text-shadow: 0 0 2px $primaryBlack;
+    background: linear-gradient(180deg, $primary80 50%, $primary 50%);
     transition: $transition;
-    box-shadow: 0 4px 0 0 $secondaryBlack;
+    box-shadow: 0 4px 0 0 $primaryBlack;
     &:hover {
       box-shadow: none;
       transform: translateY(4px);
@@ -34,12 +34,12 @@
     padding: vw(10) vw(20);
     border-radius: 100vh;
     font-weight: $fwMedium;
-    background-color: $secondary;
+    background-color: $primary;
     color: $white;
-    text-shadow: 0 0 vw(2) $secondaryBlack;
-    background: linear-gradient(180deg, $secondary80 50%, $secondary 50%);
+    text-shadow: 0 0 vw(2) $primaryBlack;
+    background: linear-gradient(180deg, $primary80 50%, $primary 50%);
     transition: $transition;
-    box-shadow: 0 vw(4) 0 0 $secondaryBlack;
+    box-shadow: 0 vw(4) 0 0 $primaryBlack;
     &:hover {
       box-shadow: none;
       transform: translateY(vw(4));

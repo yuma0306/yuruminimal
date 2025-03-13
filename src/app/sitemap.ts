@@ -17,20 +17,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const { contents: blogs } = await getListData<BlogType>(endpoints.blogs);
 	const blogUrls = blogs.map((blog) => {
 		return {
-			url: `${baseUrl}/blog/${blog.category.id}/${blog.id}/`,
+			url: `${baseUrl}/blog/${blog.tag.id}/${blog.id}/`,
 			lastModified: new Date(blog.updatedAt),
 			changeFrequency: 'weekly' as const,
 			priority: 0.8,
 		};
 	});
 
-	const categorySet = new Set<string>();
+	const tagSet = new Set<string>();
 	for (const blog of blogs) {
-		categorySet.add(String(blog.category.id));
+		tagSet.add(String(blog.tag.id));
 	}
-	const categoryUrls = Array.from(categorySet).map((categoryId) => {
+	const tagUrls = Array.from(tagSet).map((tagId) => {
 		return {
-			url: `${baseUrl}/blog/${categoryId}/`,
+			url: `${baseUrl}/blog/${tagId}/`,
 			lastModified: new Date(),
 			changeFrequency: 'weekly' as const,
 			priority: 0.7,
@@ -47,5 +47,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		};
 	});
 
-	return [...routes, ...blogUrls, ...categoryUrls, ...infoUrls];
+	return [...routes, ...blogUrls, ...tagUrls, ...infoUrls];
 }

@@ -21,7 +21,6 @@ export const HomeFv = ({ posts }: Props) => {
 				loop
 				centeredSlides
 				modules={[Navigation, Pagination]}
-				navigation
 				pagination={{ clickable: true }}
 				breakpoints={{
 					[media.tab]: {
@@ -41,7 +40,7 @@ export const HomeFv = ({ posts }: Props) => {
 						post.publishedAt && (
 							<SwiperSlide className={styles.sliderItem} key={index}>
 								<HomeFvCard
-									link={`/blog/${post.category.id}/${post.id}/`}
+									link={`/blog/${post.id}/`}
 									image={post.eyecatch.url}
 									width={post.eyecatch.width}
 									height={post.eyecatch.height}
