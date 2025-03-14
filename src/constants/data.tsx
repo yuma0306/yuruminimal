@@ -19,6 +19,7 @@ export const commonMetaData = {
 		shortcut: '/img/favicon/favicon.ico',
 		apple: { url: '/img/favicon/apple-touch-icon.png', sizes: '180x180' },
 	},
+	ogp: {},
 	appleWebApp: {
 		title: siteName,
 	},
@@ -34,7 +35,7 @@ export const siteData = {
 				<br />
 				「無理しないミニマリスト」なので誰でも実践しやすい生き方です。
 				<br />
-				現在はタイで現地採用として働きながら、無理しないミニマルな生活について発信しています。
+				管理人はタイで働きながら、無理しないミニマルな生活について発信しています。
 			</>
 		),
 	},
