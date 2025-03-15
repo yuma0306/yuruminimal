@@ -4,7 +4,12 @@ import { HomeFv } from '@/components/HomeFv/HomeFv';
 import { HomeIntro } from '@/components/HomeIntro/HomeIntro';
 import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
-import { commonMetaData, siteDescription, siteName } from '@/constants/data';
+import {
+	commonMetaData,
+	commonOgImages,
+	siteDescription,
+	siteName,
+} from '@/constants/config';
 import { endpoints, getListData } from '@/libs/microcms';
 import type { BlogType } from '@/libs/microcms.type';
 import type { Metadata } from 'next';
@@ -12,6 +17,11 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
 	title: siteName,
 	description: siteDescription,
+	openGraph: {
+		title: siteName,
+		description: siteDescription,
+		images: commonOgImages,
+	},
 	...commonMetaData,
 };
 

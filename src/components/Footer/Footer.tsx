@@ -1,4 +1,4 @@
-import { siteName } from '@/constants/data';
+import { siteName } from '@/constants/config';
 import { endpoints, getListData } from '@/libs/microcms';
 import type { InfoType } from '@/libs/microcms.type';
 import Link from 'next/link';

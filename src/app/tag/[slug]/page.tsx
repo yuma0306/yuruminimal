@@ -9,10 +9,11 @@ import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
 import {
 	commonMetaData,
+	commonOgImages,
 	descriptionSuffix,
 	notFoundTitle,
 	titleSuffix,
-} from '@/constants/data';
+} from '@/constants/config';
 import { trimTimefromDate } from '@/functions/date';
 import { endpoints, getListData } from '@/libs/microcms';
 import type { BlogType, TagType } from '@/libs/microcms.type';
@@ -48,6 +49,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		return {
 			title: notFoundTitle + titleSuffix,
 			description: notFoundTitle + descriptionSuffix,
+			openGraph: {
+				title: notFoundTitle + titleSuffix,
+				description: notFoundTitle + descriptionSuffix,
+				images: commonOgImages,
+			},
 			...commonMetaData,
 		};
 	}
@@ -57,6 +63,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	return {
 		title: `${tagName}の記事一覧${titleSuffix}`,
 		description: `${tagName}の記事一覧${descriptionSuffix}`,
+		openGraph: {
+			title: `${tagName}の記事一覧${titleSuffix}`,
+			description: `${tagName}の記事一覧${descriptionSuffix}`,
+			images: commonOgImages,
+		},
 		...commonMetaData,
 	};
 }

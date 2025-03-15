@@ -10,10 +10,11 @@ import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
 import {
 	commonMetaData,
+	commonOgImages,
 	descriptionSuffix,
 	notFoundTitle,
 	titleSuffix,
-} from '@/constants/data';
+} from '@/constants/config';
 import { endpoints, getDetailData, getListData } from '@/libs/microcms';
 import type { BlogType } from '@/libs/microcms.type';
 import type { Metadata } from 'next';
@@ -44,12 +45,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		return {
 			title: notFoundTitle + titleSuffix,
 			description: notFoundTitle + descriptionSuffix,
+			openGraph: {
+				title: notFoundTitle + titleSuffix,
+				description: notFoundTitle + descriptionSuffix,
+				images: commonOgImages,
+			},
 			...commonMetaData,
 		};
 	}
 	return {
 		title: post.title + titleSuffix,
 		description: post.description + descriptionSuffix,
+		openGraph: {
+			title: post.title + titleSuffix,
+			description: post.description + descriptionSuffix,
+			images: post.eyecatch?.url
+				? [
+						{
+							url: post.eyecatch.url,
+							width: post.eyecatch.width,
+							height: post.eyecatch.height,
+							alt: post.title,
+						},
+					]
+				: commonOgImages,
+		},
 		...commonMetaData,
 	};
 }

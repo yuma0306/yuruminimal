@@ -1,4 +1,4 @@
-import { siteName } from '@/constants/data';
+import { siteName } from '@/constants/config';
 import Link from 'next/link';
 import type React from 'react';
 import styles from './Header.module.scss';

@@ -1,5 +1,5 @@
 import { Inner } from '@/components/Inner/Inner';
-import { siteData } from '@/constants/data';
+import { siteData } from '@/constants/config';
 import { endpoints, getListData } from '@/libs/microcms';
 import type { TagType } from '@/libs/microcms.type';
 import Link from 'next/link';

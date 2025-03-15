@@ -1,7 +1,7 @@
-import { Noto_Sans_JP } from 'next/font/google';
+import { Noto_Serif_JP } from 'next/font/google';
 import '../styles/global.scss';
 
-const notoSansJp = Noto_Sans_JP({
+const font = Noto_Serif_JP({
 	weight: ['400', '500', '700'],
 	subsets: ['latin'],
 	display: 'swap',
@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="ja">
-			<body className={`${notoSansJp.className}`}>{children}</body>
+			<body className={`${font.className}`}>{children}</body>
 		</html>
 	);
 }

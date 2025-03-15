@@ -1,10 +1,9 @@
+import { baseUrl } from '@/constants/config';
 import { endpoints, getListData } from '@/libs/microcms';
 import type { BlogType, InfoType, TagType } from '@/libs/microcms.type';
 import type { MetadataRoute } from 'next';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-	const baseUrl = 'https://yuruminimal.vercel.app';
-
 	const routes = [
 		{
 			url: baseUrl,
