@@ -43,15 +43,29 @@
 @include sp {
   .link {
     display: block;
+    background-color: $white;
+    box-shadow: 0 0 vw(4) vw(4) $primary10;
+    &:hover {
+      opacity: $opacity;
+      .image {
+        scale: $scale;
+      }
+    }
   }
   .image {
     aspect-ratio: 16 / 9;
   }
+  .body {
+    padding: vw(14);
+    display: grid;
+    row-gap: vw(4);
+  }
   .time {
-    font-size: vw(12);
+    display: block;
+    font-size: vw(10);
   }
   .title {
-    font-size: vw(18);
+    font-size: vw(16);
     font-weight: $fwMedium;
     display: -webkit-box;
     -webkit-box-orient: vertical;

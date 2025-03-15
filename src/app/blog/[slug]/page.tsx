@@ -59,6 +59,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		alternates: {
 			canonical: `${siteRoutes.blog.index.path}${post.id}/`,
 		},
+		robots: {
+			index: !post.noindex,
+			follow: !post.nofollow,
+		},
 	};
 }
 

@@ -1,15 +1,6 @@
-import { siteRoutes } from './siteRoutes';
-
-const domain = 'yuruminimal.vercel.app';
-const siteName = '海外ゆるミニマリスト';
+import { baseUrl, siteName } from './siteConfig';
 
 export const siteMeta = {
-	domain,
-	baseUrl:
-		process.env.NODE_ENV === 'development'
-			? 'http://localhost:3000'
-			: `https://${domain}`,
-	siteName,
 	description: `${siteName}では無理しないミニマルな生活について発信しています。`,
 	titleSuffix: ` | ${siteName}`,
 	descriptionSuffix: ` | ${siteName}では無理しないミニマルな生活について発信しています。`,
@@ -41,14 +32,14 @@ export const siteMeta = {
 };
 
 export const getCommonMetadata = () => ({
-	metadataBase: new URL(siteMeta.baseUrl),
+	metadataBase: new URL(baseUrl),
 	icons: siteMeta.icons,
 	appleWebApp: siteMeta.appleWebApp,
 	manifest: siteMeta.manifest,
 });
 
 export const getDefaultOpenGraph = () => ({
-	title: siteMeta.siteName,
+	title: siteName,
 	description: siteMeta.description,
 	images: siteMeta.og.image,
 	type: siteMeta.og.type,

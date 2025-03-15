@@ -30,7 +30,7 @@
 
 @include sp {
   .intro {
-    padding-block: vw(60) calc(vw(60) + vw(60));
+    padding-block: vw(60);
     background: $white;
   }
   .heading {

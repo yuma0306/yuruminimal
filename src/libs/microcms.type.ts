@@ -13,6 +13,8 @@ export type BlogType = {
 	tags: TagType[];
 	recommend: boolean;
 	description: string;
+	noindex: boolean;
+	nofollow: boolean;
 } & MicroCMSDate;
 
 export type TagType = {
@@ -25,4 +27,6 @@ export type InfoType = {
 	title: string;
 	content: string;
 	description: string;
+	noindex: boolean;
+	nofollow: boolean;
 } & MicroCMSDate;

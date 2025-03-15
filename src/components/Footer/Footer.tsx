@@ -1,4 +1,4 @@
-import { siteMeta } from '@/constants/siteMeta';
+import { siteName } from '@/constants/siteConfig';
 import { endpoints, fetchList } from '@/libs/microcms';
 import type { InfoType } from '@/libs/microcms.type';
 import Link from 'next/link';
@@ -22,7 +22,7 @@ export const Footer = async () => {
 						))}
 					</ul>
 				)}
-				<small className={styles.copy}>&copy;{siteMeta.siteName}</small>
+				<small className={styles.copy}>&copy;{siteName}</small>
 			</Inner>
 		</footer>
 	);
