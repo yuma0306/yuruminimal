@@ -1,9 +1,7 @@
 $white: #fff;
-$black: #333;
+$black: #000;
 
-$primary: #555;
+$primary: #777;
 $primary5: color-mix(in srgb, $primary 5%, $white);
 $primary10: color-mix(in srgb, $primary 10%, $white);
 $primary20: color-mix(in srgb, $primary 20%, $white);
-$primary80: color-mix(in srgb, $primary 80%, $white);
-$primaryBlack: color-mix(in srgb, $primary, $black);

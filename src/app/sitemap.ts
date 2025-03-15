@@ -1,46 +1,46 @@
-import { endpoints, getListData } from '@/libs/microcms';
+import { baseUrl } from '@/constants/siteConfig';
+import { siteRoutes } from '@/constants/siteRoutes';
+import { endpoints, fetchList } from '@/libs/microcms';
 import type { BlogType, InfoType, TagType } from '@/libs/microcms.type';
 import type { MetadataRoute } from 'next';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-	const baseUrl = 'https://yuruminimal.vercel.app';
-
 	const routes = [
 		{
-			url: baseUrl,
+			url: `${baseUrl}/`,
 			lastModified: new Date(),
-			changeFrequency: 'daily' as const,
+			changeFrequency: 'weekly' as const,
 			priority: 1.0,
 		},
 	];
 
-	const { contents: blogs } = await getListData<BlogType>(endpoints.blogs);
+	const { contents: blogs } = await fetchList<BlogType>(endpoints.blogs);
 	const blogUrls = blogs.map((blog) => {
 		return {
-			url: `${baseUrl}/blog/${blog.id}/`,
+			url: `${baseUrl}${siteRoutes.blog.index.path}${blog.id}/`,
 			lastModified: new Date(blog.updatedAt),
 			changeFrequency: 'weekly' as const,
 			priority: 0.8,
 		};
 	});
 
-	const { contents: tags } = await getListData<TagType>(endpoints.tags);
+	const { contents: tags } = await fetchList<TagType>(endpoints.tags);
 	const tagUrls = tags.map((tag) => {
 		return {
-			url: `${baseUrl}/${tag.id}/`,
+			url: `${baseUrl}${siteRoutes.tag.index.path}${tag.id}/`,
 			lastModified: new Date(tag.updatedAt),
 			changeFrequency: 'weekly' as const,
 			priority: 0.8,
 		};
 	});
 
-	const { contents: infos } = await getListData<InfoType>(endpoints.info);
+	const { contents: infos } = await fetchList<InfoType>(endpoints.info);
 	const infoUrls = infos.map((info) => {
 		return {
-			url: `${baseUrl}/info/${info.id}/`,
+			url: `${baseUrl}${siteRoutes.info.index.path}${info.id}/`,
 			lastModified: new Date(info.updatedAt),
 			changeFrequency: 'monthly' as const,
-			priority: 0.6,
+			priority: 0.3,
 		};
 	});
 

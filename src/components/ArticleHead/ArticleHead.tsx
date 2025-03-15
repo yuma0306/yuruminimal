@@ -6,17 +6,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 type Props = {
+	title: string;
 	createdAt: string;
 	updatedAt: string;
-	title: string;
 	eyecatch?: MicroCMSImage;
 	tags?: BlogType['tags'];
 };
 
 export const ArticleHead = ({
+	title,
 	createdAt,
 	updatedAt,
-	title,
 	eyecatch,
 	tags,
 }: Props) => {

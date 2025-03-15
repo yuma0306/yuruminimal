@@ -29,37 +29,6 @@
       background-color: $primary;
       border: 1px solid $white;
     }
-    :global(.swiper-button-prev),
-    :global(.swiper-button-next) {
-      position: absolute;
-      bottom: 0;
-      right: #{$innerSpace}px;
-      width: 30px;
-      aspect-ratio: 1;
-      background: $primary;
-      border-radius: 50%;
-      border: 1px solid $white;
-      cursor: pointer;
-      &:hover {
-        @include hoverOpacity
-      }
-      &:before {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        translate :-50% -50%;
-        width: 55%;
-        height: 55%;
-        background-color: $white;
-        mask: url(/img/icon-arrow-right.svg) no-repeat center / contain;
-        transition: scale $transition;
-        content: "";
-      }
-    }
-    :global(.swiper-button-prev) {
-      scale: -1 -1;
-      right: 55px;
-    }
   }
 }
 
@@ -89,39 +58,6 @@
     :global(.swiper-pagination-bullet-active) {
       background: $primary;
       border: 1px solid $white;
-    }
-    :global(.swiper-button-prev),
-    :global(.swiper-button-next) {
-      top: vw(60);
-      right: 11%;
-      position: absolute;
-      width: vw(30);
-      height: vw(30);
-      background: $primary;
-      border-radius: 50%;
-      z-index: $zIndexPlus;
-      border: vw(1) solid $white;
-      cursor: pointer;
-      @include hoverOpacity;
-      &:before {
-        position: absolute;
-          top: 50%;
-          left: 50%;
-          translate :-50% -50%;
-          width: 55%;
-          height: 55%;
-          background-color: $white;
-          mask: url(/img/icon-arrow-right.svg) no-repeat center / contain;
-          transition: scale $transition;
-          content: "";
-      }
-    }
-    :global(.swiper-button-prev) {
-      left: 11%;
-      right: 0;
-      &::before {
-        scale: -1 -1;
-      }
     }
   }
 }

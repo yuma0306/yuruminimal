@@ -1,26 +1,26 @@
+import { AppBlock } from '@/components/AppBlock/AppBlock';
+import { AppBreadcrumb } from '@/components/AppBreadcrumb/AppBreadcrumb';
 import { AppGrid } from '@/components/AppGrid/AppGrid';
+import { AppMain } from '@/components/AppMain/AppMain';
 import { ArticleBody } from '@/components/ArticleBody/ArticleBody';
 import { ArticleHead } from '@/components/ArticleHead/ArticleHead';
-import { Block } from '@/components/Block/Block';
-import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { Footer } from '@/components/Footer/Footer';
 import { Header } from '@/components/Header/Header';
 import { HolizonalSpacer } from '@/components/HolizonalSpacer/HolizonalSpacer';
-import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
 import {
-	commonMetaData,
-	descriptionSuffix,
-	notFoundTitle,
-	titleSuffix,
-} from '@/constants/data';
-import { endpoints, getDetailData, getListData } from '@/libs/microcms';
+	getCommonMetadata,
+	getDefaultOpenGraph,
+	siteMeta,
+} from '@/constants/siteMeta';
+import { siteRoutes } from '@/constants/siteRoutes';
+import { endpoints, fetchList, fetchListDetail } from '@/libs/microcms';
 import type { InfoType } from '@/libs/microcms.type';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next/types';
 
 export async function generateStaticParams() {
-	const { contents } = await getListData<InfoType>(endpoints.info);
+	const { contents } = await fetchList<InfoType>(endpoints.info);
 	const paths = contents.map((post) => {
 		return {
 			slug: post.id,
@@ -39,47 +39,48 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { slug } = await params;
-	const post = await getDetailData<InfoType>(endpoints.info, slug);
-	if (!post) {
-		return {
-			title: notFoundTitle + titleSuffix,
-			description: notFoundTitle + descriptionSuffix,
-			...commonMetaData,
-		};
-	}
+	const post = await fetchListDetail<InfoType>(endpoints.info, slug);
+	!post && notFound();
+
 	return {
-		title: post.title + titleSuffix,
-		description: post.description + descriptionSuffix,
-		...commonMetaData,
+		...getCommonMetadata(),
+		title: post.title + siteMeta.titleSuffix,
+		description: post.description + siteMeta.descriptionSuffix,
+		openGraph: getDefaultOpenGraph(),
+		alternates: {
+			canonical: `${siteRoutes.info.index.path}${post.id}/`,
+		},
+		robots: {
+			index: !post.noindex,
+			follow: !post.nofollow,
+		},
 	};
 }
 
 export default async function InfoDetailPage({ params }: Props) {
-	const post = await getDetailData<InfoType>(
+	const post = await fetchListDetail<InfoType>(
 		endpoints.info,
 		(await params).slug,
 	);
-	if (!post) {
-		notFound();
-	}
+	!post && notFound();
+
 	const breadcrumbItems = [
 		{
-			text: 'トップ',
-			link: '/',
+			text: siteRoutes.home.text,
+			link: siteRoutes.home.path,
 		},
 		{
 			text: post.title,
-			link: `/info/${post.id}/`,
+			link: `${siteRoutes.blog.index.path}${post.id}/`,
 		},
 	];
-
 	return (
 		<Wrapper>
 			<Header />
-			<Main>
+			<AppMain>
 				<HolizonalSpacer>
-					<Breadcrumb items={breadcrumbItems} />
-					<Block>
+					<AppBreadcrumb items={breadcrumbItems} />
+					<AppBlock>
 						<AppGrid as="div">
 							<ArticleHead
 								createdAt={post.createdAt}
@@ -88,9 +89,9 @@ export default async function InfoDetailPage({ params }: Props) {
 							/>
 							<ArticleBody html={post.content} />
 						</AppGrid>
-					</Block>
+					</AppBlock>
 				</HolizonalSpacer>
-			</Main>
+			</AppMain>
 			<Footer />
 		</Wrapper>
 	);

@@ -20,7 +20,7 @@
     h2 {
       margin-top: 50px;
       position: relative;
-      border-bottom: 4px solid $primary10;
+      border-bottom: 2px solid $primary10;
       padding-bottom: 10px;
       font-size: 24px;
       &::before {
@@ -28,7 +28,7 @@
         bottom: 0;
         left: 0;
         width: 10%;
-        height: 4px;
+        height: 2px;
         background-color: $primary;
         content: "";
         transform: translateY(100%);
@@ -41,9 +41,9 @@
       font-size: 22px;
       &::before {
         position: absolute;
-        top: 3px;
+        top: 4px;
         left: 0;
-        width: 5px;
+        width: 2px;
         height: 24px;
         background-color: $primary;
         content: "";
@@ -146,7 +146,7 @@
     h2 {
       margin-top: vw(50);
       position: relative;
-      border-bottom: vw(4) solid $primary10;
+      border-bottom: vw(2) solid $primary10;
       padding-bottom: vw(10);
       font-size: vw(22);
       &::before {
@@ -154,7 +154,7 @@
         bottom: 0;
         left: 0;
         width: 10%;
-        height: vw(4);
+        height: vw(2);
         background-color: $primary;
         content: "";
         transform: translateY(100%);
@@ -167,9 +167,9 @@
       font-size: vw(20);
       &::before {
         position: absolute;
-        top: vw(3);
+        top: vw(4);
         left: 0;
-        width: vw(5);
+        width: vw(2);
         height: vw(24);
         background-color: $primary;
         content: "";

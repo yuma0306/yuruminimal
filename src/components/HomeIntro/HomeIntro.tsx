@@ -1,17 +1,17 @@
 import { Inner } from '@/components/Inner/Inner';
-import { siteData } from '@/constants/data';
-import { endpoints, getListData } from '@/libs/microcms';
+import { siteContent } from '@/constants/siteContent';
+import { endpoints, fetchList } from '@/libs/microcms';
 import type { TagType } from '@/libs/microcms.type';
 import Link from 'next/link';
 import styles from './HomeIntro.module.scss';
 
 export const HomeIntro = async () => {
-	const { contents: tags } = await getListData<TagType>(endpoints.tags);
+	const { contents: tags } = await fetchList<TagType>(endpoints.tags);
 	return (
 		<section className={styles.intro}>
 			<Inner>
-				<h2 className={styles.heading}>{siteData.intro.heading}</h2>
-				<p className={styles.text}>{siteData.intro.content}</p>
+				<h2 className={styles.heading}>{siteContent.intro.heading}</h2>
+				<p className={styles.text}>{siteContent.intro.content}</p>
 				<ul className={styles.tags}>
 					{tags.map((tag) => (
 						<li key={tag.id} className={styles.tag}>

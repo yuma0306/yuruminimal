@@ -1,0 +1,23 @@
+@use '../../styles/use/import' as *;
+@use '../../styles/config/import' as *;
+
+@include pc {
+  .notFound {
+    display: grid;
+    row-gap: 20px;
+  }
+  .link {
+    text-decoration: underline;
+    @include hoverOpacity
+  }
+}
+
+@include sp {
+  .notFound {
+    display: grid;
+    row-gap: vw(20);
+  }
+  .link {
+    @include hoverOpacity
+  }
+}

@@ -1,26 +1,22 @@
+import { AppBlock } from '@/components/AppBlock/AppBlock';
+import { AppBreadcrumb } from '@/components/AppBreadcrumb/AppBreadcrumb';
+import { AppMain } from '@/components/AppMain/AppMain';
 import { ArchiveList } from '@/components/ArchiveList/ArchiveList';
-import { Block } from '@/components/Block/Block';
-import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { CardLink } from '@/components/CardLink/CardLink';
 import { Footer } from '@/components/Footer/Footer';
 import { Header } from '@/components/Header/Header';
 import { HolizonalSpacer } from '@/components/HolizonalSpacer/HolizonalSpacer';
-import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
-import {
-	commonMetaData,
-	descriptionSuffix,
-	notFoundTitle,
-	titleSuffix,
-} from '@/constants/data';
+import { getCommonMetadata, siteMeta } from '@/constants/siteMeta';
+import { siteRoutes } from '@/constants/siteRoutes';
 import { trimTimefromDate } from '@/functions/date';
-import { endpoints, getListData } from '@/libs/microcms';
+import { endpoints, fetchList } from '@/libs/microcms';
 import type { BlogType, TagType } from '@/libs/microcms.type';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
-	const { contents: tags } = await getListData<TagType>(endpoints.tags);
+	const { contents: tags } = await fetchList<TagType>(endpoints.tags);
 	const paths = tags.map((tag) => {
 		return {
 			slug: tag.id,
@@ -28,7 +24,6 @@ export async function generateStaticParams() {
 	});
 	return paths;
 }
-
 export const dynamicParams = false;
 
 type Props = {
@@ -39,69 +34,60 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { slug } = await params;
-
-	const { contents: tagContents } = await getListData<TagType>(endpoints.tags, {
+	const { contents: tagContents } = await fetchList<TagType>(endpoints.tags, {
 		filters: `id[equals]${slug}`,
 	});
-
-	if (tagContents.length === 0) {
-		return {
-			title: notFoundTitle + titleSuffix,
-			description: notFoundTitle + descriptionSuffix,
-			...commonMetaData,
-		};
-	}
+	tagContents.length === 0 && notFound();
 
 	const tagName = tagContents[0].name;
-
 	return {
-		title: `${tagName}の記事一覧${titleSuffix}`,
-		description: `${tagName}の記事一覧${descriptionSuffix}`,
-		...commonMetaData,
+		...getCommonMetadata(),
+		title: `${tagName}の記事一覧${siteMeta.titleSuffix}`,
+		description: `${tagName}の記事一覧${siteMeta.descriptionSuffix}`,
+		openGraph: {
+			title: `${tagName}の記事一覧${siteMeta.titleSuffix}`,
+			description: `${tagName}の記事一覧${siteMeta.descriptionSuffix}`,
+			images: siteMeta.og.image,
+			type: siteMeta.og.type,
+		},
+		alternates: {
+			canonical: `${siteRoutes.info.index.path}${tagContents[0].id}/`,
+		},
 	};
 }
 
 export default async function TagArchivePage({ params }: Props) {
 	const { slug } = await params;
-
-	const { contents: tagContents } = await getListData<TagType>(endpoints.tags, {
+	const { contents: tagContents } = await fetchList<TagType>(endpoints.tags, {
 		filters: `id[equals]${slug}`,
 	});
-
-	if (tagContents.length === 0) {
-		notFound();
-	}
+	tagContents.length === 0 && notFound();
 
 	const tagName = tagContents[0].name;
-
-	const { contents } = await getListData<BlogType>(endpoints.blogs);
-
+	const { contents } = await fetchList<BlogType>(endpoints.blogs);
 	const posts = contents.filter((item) =>
 		item.tags.some((tag) => tag.id.toString() === slug),
 	);
-
 	if (posts.length === 0) {
 		notFound();
 	}
-
 	const breadcrumbItems = [
 		{
-			text: 'トップ',
-			link: '/',
+			text: siteRoutes.home.text,
+			link: siteRoutes.home.path,
 		},
 		{
 			text: `#${tagName}の記事一覧`,
-			link: `/tag/${slug}/`,
+			link: `${siteRoutes.blog.index.path}${slug}/`,
 		},
 	];
-
 	return (
 		<Wrapper>
 			<Header />
-			<Main>
+			<AppMain>
 				<HolizonalSpacer>
-					<Breadcrumb items={breadcrumbItems} />
-					<Block>
+					<AppBreadcrumb items={breadcrumbItems} />
+					<AppBlock>
 						<ArchiveList>
 							{posts.map(
 								(post) =>
@@ -121,9 +107,9 @@ export default async function TagArchivePage({ params }: Props) {
 									),
 							)}
 						</ArchiveList>
-					</Block>
+					</AppBlock>
 				</HolizonalSpacer>
-			</Main>
+			</AppMain>
 			<Footer />
 		</Wrapper>
 	);
