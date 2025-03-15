@@ -22,6 +22,10 @@ export const metadata: Metadata = {
 	alternates: {
 		canonical: siteRoutes.notFound.path,
 	},
+	robots: {
+		index: false,
+		follow: false,
+	},
 };
 
 export default function NotFoundPage() {
