@@ -1,12 +1,12 @@
 import { AppBlock } from '@/components/AppBlock/AppBlock';
 import { AppBreadcrumb } from '@/components/AppBreadcrumb/AppBreadcrumb';
 import { AppGrid } from '@/components/AppGrid/AppGrid';
+import { AppMain } from '@/components/AppMain/AppMain';
 import { ArticleBody } from '@/components/ArticleBody/ArticleBody';
 import { ArticleHead } from '@/components/ArticleHead/ArticleHead';
 import { Footer } from '@/components/Footer/Footer';
 import { Header } from '@/components/Header/Header';
 import { HolizonalSpacer } from '@/components/HolizonalSpacer/HolizonalSpacer';
-import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
 import {
 	getCommonMetadata,
@@ -77,7 +77,7 @@ export default async function InfoDetailPage({ params }: Props) {
 	return (
 		<Wrapper>
 			<Header />
-			<Main>
+			<AppMain>
 				<HolizonalSpacer>
 					<AppBreadcrumb items={breadcrumbItems} />
 					<AppBlock>
@@ -91,7 +91,7 @@ export default async function InfoDetailPage({ params }: Props) {
 						</AppGrid>
 					</AppBlock>
 				</HolizonalSpacer>
-			</Main>
+			</AppMain>
 			<Footer />
 		</Wrapper>
 	);

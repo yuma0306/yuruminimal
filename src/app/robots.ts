@@ -1,4 +1,4 @@
-import { siteMeta } from '@/constants/siteMeta';
+import { baseUrl } from '@/constants/siteConfig';
 import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
 			userAgent: '*',
 			allow: '/',
 		},
-		sitemap: `${siteMeta.baseUrl}/sitemap.xml`,
+		sitemap: `${baseUrl}/sitemap.xml`,
 	};
 }

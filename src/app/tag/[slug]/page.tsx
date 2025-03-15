@@ -1,11 +1,11 @@
 import { AppBlock } from '@/components/AppBlock/AppBlock';
 import { AppBreadcrumb } from '@/components/AppBreadcrumb/AppBreadcrumb';
+import { AppMain } from '@/components/AppMain/AppMain';
 import { ArchiveList } from '@/components/ArchiveList/ArchiveList';
 import { CardLink } from '@/components/CardLink/CardLink';
 import { Footer } from '@/components/Footer/Footer';
 import { Header } from '@/components/Header/Header';
 import { HolizonalSpacer } from '@/components/HolizonalSpacer/HolizonalSpacer';
-import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
 import { getCommonMetadata, siteMeta } from '@/constants/siteMeta';
 import { siteRoutes } from '@/constants/siteRoutes';
@@ -84,7 +84,7 @@ export default async function TagArchivePage({ params }: Props) {
 	return (
 		<Wrapper>
 			<Header />
-			<Main>
+			<AppMain>
 				<HolizonalSpacer>
 					<AppBreadcrumb items={breadcrumbItems} />
 					<AppBlock>
@@ -109,7 +109,7 @@ export default async function TagArchivePage({ params }: Props) {
 						</ArchiveList>
 					</AppBlock>
 				</HolizonalSpacer>
-			</Main>
+			</AppMain>
 			<Footer />
 		</Wrapper>
 	);

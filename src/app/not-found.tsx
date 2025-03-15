@@ -1,10 +1,10 @@
 import { AppBlock } from '@/components/AppBlock/AppBlock';
 import { AppBreadcrumb } from '@/components/AppBreadcrumb/AppBreadcrumb';
+import { AppMain } from '@/components/AppMain/AppMain';
 import { AppNotFound } from '@/components/AppNotFound/AppNotFound';
 import { Footer } from '@/components/Footer/Footer';
 import { Header } from '@/components/Header/Header';
 import { HolizonalSpacer } from '@/components/HolizonalSpacer/HolizonalSpacer';
-import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
 import {
 	getCommonMetadata,
@@ -42,7 +42,7 @@ export default function NotFoundPage() {
 	return (
 		<Wrapper>
 			<Header />
-			<Main>
+			<AppMain>
 				<HolizonalSpacer>
 					<AppBreadcrumb items={breadcrumbItems} />
 				</HolizonalSpacer>
@@ -51,7 +51,7 @@ export default function NotFoundPage() {
 						<AppNotFound />
 					</AppBlock>
 				</HolizonalSpacer>
-			</Main>
+			</AppMain>
 			<Footer />
 		</Wrapper>
 	);

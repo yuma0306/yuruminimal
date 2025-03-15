@@ -1,9 +1,10 @@
+import { AppMain } from '@/components/AppMain/AppMain';
 import { Footer } from '@/components/Footer/Footer';
 import { Header } from '@/components/Header/Header';
 import { HomeFv } from '@/components/HomeFv/HomeFv';
 import { HomeIntro } from '@/components/HomeIntro/HomeIntro';
-import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
+import { siteName } from '@/constants/siteConfig';
 import {
 	getCommonMetadata,
 	getDefaultOpenGraph,
@@ -18,7 +19,7 @@ const minFvPostLength = 6;
 
 export const metadata: Metadata = {
 	...getCommonMetadata(),
-	title: siteMeta.siteName,
+	title: siteName,
 	description: siteMeta.description,
 	openGraph: getDefaultOpenGraph(),
 	alternates: {
@@ -33,10 +34,10 @@ export default async function HomePage() {
 	return (
 		<Wrapper>
 			<Header isHome />
-			<Main>
+			<AppMain>
 				<HomeFv posts={minFvPostLength ? copyPosts(posts) : posts} />
 				<HomeIntro />
-			</Main>
+			</AppMain>
 			<Footer />
 		</Wrapper>
 	);
