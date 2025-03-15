@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function NotFound() {
+export default function NotFoundPage() {
 	const breadcrumbItems = [
 		{
 			text: siteRoutes.home.text,
@@ -40,12 +40,7 @@ export default function NotFound() {
 			<Header />
 			<Main>
 				<HolizonalSpacer>
-					<AppBreadcrumb
-						items={[
-							{ text: 'トップページ', link: siteRoutes.home.path },
-							{ text: 'お探しのページは見つかりませんでした', link: '' },
-						]}
-					/>
+					<AppBreadcrumb items={breadcrumbItems} />
 				</HolizonalSpacer>
 				<HolizonalSpacer>
 					<AppBlock>
