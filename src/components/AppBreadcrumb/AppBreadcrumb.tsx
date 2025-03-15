@@ -1,4 +1,4 @@
-import styles from '@/components/Breadcrumb/Breadcrumb.module.scss';
+import styles from '@/components/AppBreadcrumb/AppBreadcrumb.module.scss';
 import Link from 'next/link';
 import { Inner } from '../Inner/Inner';
 
@@ -9,7 +9,7 @@ type Props = {
 	}[];
 };
 
-export const Breadcrumb = ({ items }: Props) => {
+export const AppBreadcrumb = ({ items }: Props) => {
 	return (
 		<Inner>
 			<ul className={styles.list}>

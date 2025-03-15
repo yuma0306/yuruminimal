@@ -1,6 +1,6 @@
+import { AppBlock } from '@/components/AppBlock/AppBlock';
+import { AppBreadcrumb } from '@/components/AppBreadcrumb/AppBreadcrumb';
 import { AppNotFound } from '@/components/AppNotFound/AppNotFound';
-import { Block } from '@/components/Block/Block';
-import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { Footer } from '@/components/Footer/Footer';
 import { Header } from '@/components/Header/Header';
 import { HolizonalSpacer } from '@/components/HolizonalSpacer/HolizonalSpacer';
@@ -40,10 +40,17 @@ export default function NotFound() {
 			<Header />
 			<Main>
 				<HolizonalSpacer>
-					<Breadcrumb items={breadcrumbItems} />
-					<Block>
+					<AppBreadcrumb
+						items={[
+							{ text: 'トップページ', link: siteRoutes.home.path },
+							{ text: 'お探しのページは見つかりませんでした', link: '' },
+						]}
+					/>
+				</HolizonalSpacer>
+				<HolizonalSpacer>
+					<AppBlock>
 						<AppNotFound />
-					</Block>
+					</AppBlock>
 				</HolizonalSpacer>
 			</Main>
 			<Footer />

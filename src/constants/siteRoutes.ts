@@ -15,7 +15,7 @@ export const siteRoutes = {
 	},
 	tag: {
 		index: {
-			path: 'tag/',
+			path: '/tag/',
 		},
 	},
 	info: {

@@ -1,6 +1,6 @@
+import { AppBlock } from '@/components/AppBlock/AppBlock';
+import { AppBreadcrumb } from '@/components/AppBreadcrumb/AppBreadcrumb';
 import { ArchiveList } from '@/components/ArchiveList/ArchiveList';
-import { Block } from '@/components/Block/Block';
-import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { CardLink } from '@/components/CardLink/CardLink';
 import { Footer } from '@/components/Footer/Footer';
 import { Header } from '@/components/Header/Header';
@@ -48,8 +48,8 @@ export default async function BlogArchivePage() {
 			<Header />
 			<Main>
 				<HolizonalSpacer>
-					<Breadcrumb items={breadcrumbItems} />
-					<Block>
+					<AppBreadcrumb items={breadcrumbItems} />
+					<AppBlock>
 						<ArchiveList>
 							{posts.map(
 								(post) =>
@@ -69,7 +69,7 @@ export default async function BlogArchivePage() {
 									),
 							)}
 						</ArchiveList>
-					</Block>
+					</AppBlock>
 				</HolizonalSpacer>
 			</Main>
 			<Footer />

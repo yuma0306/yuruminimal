@@ -1,8 +1,8 @@
+import { AppBlock } from '@/components/AppBlock/AppBlock';
+import { AppBreadcrumb } from '@/components/AppBreadcrumb/AppBreadcrumb';
 import { AppGrid } from '@/components/AppGrid/AppGrid';
 import { ArticleBody } from '@/components/ArticleBody/ArticleBody';
 import { ArticleHead } from '@/components/ArticleHead/ArticleHead';
-import { Block } from '@/components/Block/Block';
-import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { Footer } from '@/components/Footer/Footer';
 import { Header } from '@/components/Header/Header';
 import { HolizonalSpacer } from '@/components/HolizonalSpacer/HolizonalSpacer';
@@ -87,8 +87,8 @@ export default async function BlogDetailPage({ params }: Props) {
 			<Header />
 			<Main>
 				<HolizonalSpacer>
-					<Breadcrumb items={breadcrumbItems} />
-					<Block>
+					<AppBreadcrumb items={breadcrumbItems} />
+					<AppBlock>
 						<AppGrid as="div">
 							<ArticleHead
 								createdAt={post.createdAt}
@@ -99,7 +99,7 @@ export default async function BlogDetailPage({ params }: Props) {
 							/>
 							<ArticleBody html={post.content} />
 						</AppGrid>
-					</Block>
+					</AppBlock>
 				</HolizonalSpacer>
 			</Main>
 			<Footer />
