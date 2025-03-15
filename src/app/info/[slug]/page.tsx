@@ -11,7 +11,6 @@ import { Wrapper } from '@/components/Wrapper/Wrapper';
 import {
 	getCommonMetadata,
 	getDefaultOpenGraph,
-	getNotFoundMetadata,
 	siteMeta,
 } from '@/constants/siteMeta';
 import { siteRoutes } from '@/constants/siteRoutes';
@@ -41,11 +40,8 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { slug } = await params;
 	const post = await fetchListDetail<InfoType>(endpoints.info, slug);
-	if (!post) {
-		return {
-			...getNotFoundMetadata(),
-		};
-	}
+	!post && notFound();
+
 	return {
 		...getCommonMetadata(),
 		title: post.title + siteMeta.titleSuffix,
@@ -62,9 +58,8 @@ export default async function InfoDetailPage({ params }: Props) {
 		endpoints.info,
 		(await params).slug,
 	);
-	if (!post) {
-		notFound();
-	}
+	!post && notFound();
+
 	const breadcrumbItems = [
 		{
 			text: siteRoutes.home.text,

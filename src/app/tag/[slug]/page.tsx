@@ -7,11 +7,7 @@ import { Header } from '@/components/Header/Header';
 import { HolizonalSpacer } from '@/components/HolizonalSpacer/HolizonalSpacer';
 import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
-import {
-	getCommonMetadata,
-	getNotFoundMetadata,
-	siteMeta,
-} from '@/constants/siteMeta';
+import { getCommonMetadata, siteMeta } from '@/constants/siteMeta';
 import { siteRoutes } from '@/constants/siteRoutes';
 import { trimTimefromDate } from '@/functions/date';
 import { endpoints, fetchList } from '@/libs/microcms';
@@ -41,11 +37,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { contents: tagContents } = await fetchList<TagType>(endpoints.tags, {
 		filters: `id[equals]${slug}`,
 	});
-	if (tagContents.length === 0) {
-		return {
-			...getNotFoundMetadata(),
-		};
-	}
+	tagContents.length === 0 && notFound();
+
 	const tagName = tagContents[0].name;
 	return {
 		...getCommonMetadata(),
@@ -68,9 +61,8 @@ export default async function TagArchivePage({ params }: Props) {
 	const { contents: tagContents } = await fetchList<TagType>(endpoints.tags, {
 		filters: `id[equals]${slug}`,
 	});
-	if (tagContents.length === 0) {
-		notFound();
-	}
+	tagContents.length === 0 && notFound();
+
 	const tagName = tagContents[0].name;
 	const { contents } = await fetchList<BlogType>(endpoints.blogs);
 	const posts = contents.filter((item) =>

@@ -8,11 +8,7 @@ import { Header } from '@/components/Header/Header';
 import { HolizonalSpacer } from '@/components/HolizonalSpacer/HolizonalSpacer';
 import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
-import {
-	getCommonMetadata,
-	getNotFoundMetadata,
-	siteMeta,
-} from '@/constants/siteMeta';
+import { getCommonMetadata, siteMeta } from '@/constants/siteMeta';
 import { siteRoutes } from '@/constants/siteRoutes';
 import { endpoints, fetchList, fetchListDetail } from '@/libs/microcms';
 import type { BlogType } from '@/libs/microcms.type';
@@ -39,11 +35,8 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { slug } = await params;
 	const post = await fetchListDetail<BlogType>(endpoints.blogs, slug);
-	if (!post) {
-		return {
-			...getNotFoundMetadata(),
-		};
-	}
+	!post && notFound();
+
 	return {
 		...getCommonMetadata(),
 		title: post.title + siteMeta.titleSuffix,
@@ -72,9 +65,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogDetailPage({ params }: Props) {
 	const { slug } = await params;
 	const post = await fetchListDetail<BlogType>(endpoints.blogs, slug);
-	if (!post) {
-		notFound();
-	}
+	!post && notFound();
+
 	const breadcrumbItems = [
 		{
 			text: siteRoutes.home.text,
@@ -89,6 +81,7 @@ export default async function BlogDetailPage({ params }: Props) {
 			link: `${siteRoutes.blog.index.path}${post.id}/`,
 		},
 	];
+
 	return (
 		<Wrapper>
 			<Header />

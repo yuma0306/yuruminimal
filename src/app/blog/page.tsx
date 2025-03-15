@@ -31,9 +31,8 @@ export const metadata: Metadata = {
 
 export default async function BlogArchivePage() {
 	const { contents: posts } = await fetchList<BlogType>(endpoints.blogs);
-	if (posts.length === 0) {
-		notFound();
-	}
+	posts.length === 0 && notFound();
+
 	const breadcrumbItems = [
 		{
 			text: siteRoutes.home.text,

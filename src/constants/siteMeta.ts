@@ -47,18 +47,6 @@ export const getCommonMetadata = () => ({
 	manifest: siteMeta.manifest,
 });
 
-export const getNotFoundMetadata = () => {
-	return {
-		...getCommonMetadata(),
-		title: `${siteRoutes.notFound.text}${siteMeta.titleSuffix}`,
-		description: `${siteRoutes.notFound.text}${siteMeta.descriptionSuffix}`,
-		openGraph: getDefaultOpenGraph(),
-		alternates: {
-			canonical: siteRoutes.notFound.path,
-		},
-	};
-};
-
 export const getDefaultOpenGraph = () => ({
 	title: siteMeta.siteName,
 	description: siteMeta.description,
