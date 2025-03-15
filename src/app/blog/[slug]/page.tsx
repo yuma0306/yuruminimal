@@ -9,19 +9,18 @@ import { HolizonalSpacer } from '@/components/HolizonalSpacer/HolizonalSpacer';
 import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
 import {
-	commonMetaData,
-	commonOgImages,
-	descriptionSuffix,
-	notFoundTitle,
-	titleSuffix,
-} from '@/constants/config';
-import { endpoints, getDetailData, getListData } from '@/libs/microcms';
+	getCommonMetadata,
+	getNotFoundMetadata,
+	siteMeta,
+} from '@/constants/siteMeta';
+import { siteRoutes } from '@/constants/siteRoutes';
+import { endpoints, fetchList, fetchListDetail } from '@/libs/microcms';
 import type { BlogType } from '@/libs/microcms.type';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
-	const { contents } = await getListData<BlogType>(endpoints.blogs);
+	const { contents } = await fetchList<BlogType>(endpoints.blogs);
 	const paths = contents.map((post) => {
 		return {
 			slug: post.id,
@@ -29,7 +28,6 @@ export async function generateStaticParams() {
 	});
 	return paths;
 }
-
 export const dynamicParams = false;
 
 type Props = {
@@ -40,25 +38,20 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { slug } = await params;
-	const post = await getDetailData<BlogType>(endpoints.blogs, slug);
+	const post = await fetchListDetail<BlogType>(endpoints.blogs, slug);
 	if (!post) {
 		return {
-			title: notFoundTitle + titleSuffix,
-			description: notFoundTitle + descriptionSuffix,
-			openGraph: {
-				title: notFoundTitle + titleSuffix,
-				description: notFoundTitle + descriptionSuffix,
-				images: commonOgImages,
-			},
-			...commonMetaData,
+			...getNotFoundMetadata(),
 		};
 	}
 	return {
-		title: post.title + titleSuffix,
-		description: post.description + descriptionSuffix,
+		...getCommonMetadata(),
+		title: post.title + siteMeta.titleSuffix,
+		description: post.description + siteMeta.descriptionSuffix,
 		openGraph: {
-			title: post.title + titleSuffix,
-			description: post.description + descriptionSuffix,
+			type: siteMeta.og.type,
+			title: post.title + siteMeta.titleSuffix,
+			description: post.description + siteMeta.descriptionSuffix,
 			images: post.eyecatch?.url
 				? [
 						{
@@ -68,26 +61,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 							alt: post.title,
 						},
 					]
-				: commonOgImages,
+				: siteMeta.og.image,
 		},
-		...commonMetaData,
+		alternates: {
+			canonical: `${siteRoutes.blog.index.path}${post.id}/`,
+		},
 	};
 }
 
 export default async function BlogDetailPage({ params }: Props) {
 	const { slug } = await params;
-	const post = await getDetailData<BlogType>(endpoints.blogs, slug);
+	const post = await fetchListDetail<BlogType>(endpoints.blogs, slug);
 	if (!post) {
 		notFound();
 	}
 	const breadcrumbItems = [
 		{
-			text: 'トップ',
-			link: '/',
+			text: siteRoutes.home.text,
+			link: siteRoutes.home.path,
+		},
+		{
+			text: siteRoutes.blog.index.text,
+			link: `${siteRoutes.blog.index.path}`,
 		},
 		{
 			text: post.title,
-			link: `/blog/${post.id}/`,
+			link: `${siteRoutes.blog.index.path}${post.id}/`,
 		},
 	];
 	return (

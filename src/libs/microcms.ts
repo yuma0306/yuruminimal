@@ -19,7 +19,7 @@ const client = createClient({
 	apiKey: process.env.MICROCMS_API_KEY,
 });
 
-export const getListData = async <T>(
+export const fetchList = async <T>(
 	endpoint: keyof typeof endpoints,
 	queries?: MicroCMSQueries,
 ) => {
@@ -30,7 +30,7 @@ export const getListData = async <T>(
 	return data;
 };
 
-export const getDetailData = async <T>(
+export const fetchListDetail = async <T>(
 	endpoint: keyof typeof endpoints,
 	contentId: string,
 	queries?: MicroCMSQueries,

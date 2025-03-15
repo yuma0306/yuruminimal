@@ -9,19 +9,19 @@ import { HolizonalSpacer } from '@/components/HolizonalSpacer/HolizonalSpacer';
 import { Main } from '@/components/Main/Main';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
 import {
-	commonMetaData,
-	commonOgImages,
-	descriptionSuffix,
-	notFoundTitle,
-	titleSuffix,
-} from '@/constants/config';
-import { endpoints, getDetailData, getListData } from '@/libs/microcms';
+	getCommonMetadata,
+	getDefaultOpenGraph,
+	getNotFoundMetadata,
+	siteMeta,
+} from '@/constants/siteMeta';
+import { siteRoutes } from '@/constants/siteRoutes';
+import { endpoints, fetchList, fetchListDetail } from '@/libs/microcms';
 import type { InfoType } from '@/libs/microcms.type';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next/types';
 
 export async function generateStaticParams() {
-	const { contents } = await getListData<InfoType>(endpoints.info);
+	const { contents } = await fetchList<InfoType>(endpoints.info);
 	const paths = contents.map((post) => {
 		return {
 			slug: post.id,
@@ -40,33 +40,25 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { slug } = await params;
-	const post = await getDetailData<InfoType>(endpoints.info, slug);
+	const post = await fetchListDetail<InfoType>(endpoints.info, slug);
 	if (!post) {
 		return {
-			title: notFoundTitle + titleSuffix,
-			description: notFoundTitle + descriptionSuffix,
-			openGraph: {
-				title: notFoundTitle + titleSuffix,
-				description: notFoundTitle + descriptionSuffix,
-				images: commonOgImages,
-			},
-			...commonMetaData,
+			...getNotFoundMetadata(),
 		};
 	}
 	return {
-		title: post.title + titleSuffix,
-		description: post.description + descriptionSuffix,
-		openGraph: {
-			title: post.title + titleSuffix,
-			description: post.description + descriptionSuffix,
-			images: commonOgImages,
+		...getCommonMetadata(),
+		title: post.title + siteMeta.titleSuffix,
+		description: post.description + siteMeta.descriptionSuffix,
+		openGraph: getDefaultOpenGraph(),
+		alternates: {
+			canonical: `${siteRoutes.info.index.path}${post.id}/`,
 		},
-		...commonMetaData,
 	};
 }
 
 export default async function InfoDetailPage({ params }: Props) {
-	const post = await getDetailData<InfoType>(
+	const post = await fetchListDetail<InfoType>(
 		endpoints.info,
 		(await params).slug,
 	);
@@ -75,15 +67,14 @@ export default async function InfoDetailPage({ params }: Props) {
 	}
 	const breadcrumbItems = [
 		{
-			text: 'トップ',
-			link: '/',
+			text: siteRoutes.home.text,
+			link: siteRoutes.home.path,
 		},
 		{
 			text: post.title,
-			link: `/info/${post.id}/`,
+			link: `${siteRoutes.blog.index.path}${post.id}/`,
 		},
 	];
-
 	return (
 		<Wrapper>
 			<Header />
