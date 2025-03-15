@@ -1,4 +1,4 @@
-export const domain = 'yuruminimal.vercel.app';
+const domain = 'yuruminimal.vercel.app';
 export const siteName = '海外ゆるミニマリスト';
 export const gtmId = '5MBX2WQF';
 export const baseUrl =
