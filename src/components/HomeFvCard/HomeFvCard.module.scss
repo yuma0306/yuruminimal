@@ -52,8 +52,13 @@
       }
     }
   }
+  .imageWrapper {
+    overflow: hidden;
+  }
   .image {
     aspect-ratio: 16 / 9;
+    width: 100%;
+    transition: scale $transition, opacity $transition;
   }
   .body {
     padding: vw(14);

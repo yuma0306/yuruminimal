@@ -2,6 +2,7 @@ import { GoogleTagManager } from '@next/third-parties/google';
 import { Noto_Serif_JP } from 'next/font/google';
 import '../styles/global.scss';
 import { gtmId } from '@/constants/siteConfig';
+import type { Viewport } from 'next';
 
 const font = Noto_Serif_JP({
 	weight: ['400', '500', '700'],
@@ -21,3 +22,7 @@ export default function RootLayout({
 		</html>
 	);
 }
+
+export const viewport: Viewport = {
+	themeColor: '#565656',
+};
