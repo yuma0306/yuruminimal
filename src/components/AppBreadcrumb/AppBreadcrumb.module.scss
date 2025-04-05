@@ -9,6 +9,8 @@
     padding-bottom: 20px;
     overflow-x: auto;
     white-space: nowrap;
+    max-width: calc(#{$innerWidth}px + 40px);
+    margin-inline: auto;
   }
   .item {
     position: relative;

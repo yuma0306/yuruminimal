@@ -25,6 +25,7 @@ export async function generateStaticParams() {
 	return paths;
 }
 export const dynamicParams = false;
+export const revalidate = 3600;
 
 type Props = {
 	params: Promise<{
