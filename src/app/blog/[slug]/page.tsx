@@ -8,6 +8,7 @@ import { Footer } from '@/components/Footer/Footer';
 import { Header } from '@/components/Header/Header';
 import { HolizonalSpacer } from '@/components/HolizonalSpacer/HolizonalSpacer';
 import { Wrapper } from '@/components/Wrapper/Wrapper';
+import { revalidateTime } from '@/constants/siteConfig';
 import { getCommonMetadata, siteMeta } from '@/constants/siteMeta';
 import { siteRoutes } from '@/constants/siteRoutes';
 import { endpoints, fetchList, fetchListDetail } from '@/libs/microcms';
@@ -25,7 +26,7 @@ export async function generateStaticParams() {
 	return paths;
 }
 export const dynamicParams = false;
-export const revalidate = 3600;
+export const revalidate = revalidateTime;
 
 type Props = {
 	params: Promise<{
