@@ -3,6 +3,7 @@ import { siteContent } from '@/constants/siteContent';
 import { endpoints, fetchList } from '@/libs/microcms';
 import type { TagType } from '@/libs/microcms.type';
 import Link from 'next/link';
+import { AppDialog } from '../AppDialog/AppDialog';
 import styles from './HomeIntro.module.scss';
 
 export const HomeIntro = async () => {
@@ -21,6 +22,7 @@ export const HomeIntro = async () => {
 						</li>
 					))}
 				</ul>
+				<AppDialog />
 			</Inner>
 		</section>
 	);
