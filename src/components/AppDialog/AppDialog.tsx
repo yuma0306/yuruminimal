@@ -1,9 +1,10 @@
 'use client';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './AppDialog.module.scss';
 
 export const AppDialog = () => {
 	const dialogRef = useRef<HTMLDialogElement>(null);
+
 	const handleShowModal = () => {
 		dialogRef.current?.showModal();
 		document.body.style.overflow = 'hidden';
@@ -12,6 +13,19 @@ export const AppDialog = () => {
 		dialogRef.current?.close();
 		document.body.style.overflow = '';
 	};
+
+	useEffect(() => {
+		const dialog = dialogRef.current;
+		const handleCancel = () => {
+			dialogRef.current?.close();
+			document.body.style.overflow = '';
+		};
+		dialog?.addEventListener('cancel', handleCancel);
+		return () => {
+			dialog?.removeEventListener('cancel', handleCancel);
+		};
+	}, []);
+
 	return (
 		<>
 			<button type="button" onClick={handleShowModal}>
