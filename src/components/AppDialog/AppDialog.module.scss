@@ -19,6 +19,7 @@
     background-color: $white;
     scrollbar-gutter: stable both-edges;
     scrollbar-width: thin;
+    overscroll-behavior: none;
   }
 }
 
